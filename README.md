@@ -1,4 +1,4 @@
-require for vite: 
+require() for vite: 
 
     1. npm i vite-plugin-require
     2. import vitePluginRequire from "vite-plugin-require";
