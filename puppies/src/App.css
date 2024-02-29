@@ -1,0 +1,183 @@
+:root{
+  --bg-clr: #181818;
+  --clr-seno: #F6C391
+}
+
+*{
+  margin:0;padding:0;
+  box-sizing: border-box;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  background-color: var(--bg-clr);
+  color:white;
+  font-family:'montserrat';
+
+  max-width: 90%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+
+
+/*Header*/
+
+
+.header_inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color:white;
+  padding: 2rem;
+}
+
+.nav{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:6rem;
+}
+
+.nav a{
+  color:white;
+  text-decoration: none;
+  transition: all .15s ease-in;
+}
+
+.nav a:hover{
+  color:var(--clr-seno);
+}
+
+.nav .logo{
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.menu_inner{
+  position: absolute;
+  height: 200px;
+  width: 150px;
+
+  border:1px solid;
+  border-radius: 1rem;
+  background-color: white;
+  top:15vh;
+  right: 10%;
+  margin:0;
+  padding:0;  
+  
+  transition: all .25s ease-in-out;
+}
+
+.menu-hidden{
+  right: -200px;
+  display:none;
+}
+
+.menu_nav{
+  display:flex;
+  justify-content: center;
+  flex-direction: column; 
+  height: 100%;
+  gap:1rem;
+}
+
+.menu_nav a{
+  color: #272727;
+  text-decoration: none;
+  padding:1rem;
+  border-radius: 5px;
+  transition: all .25s ease;
+}
+
+.menu_nav a:hover{
+  background-color: #FFDFDF70;
+}
+
+@media (max-width: 960px) {
+  .nav > a{
+    display:none
+  }
+}
+
+
+
+/* PUPPY */
+
+.puppy_main{
+  color:white;
+}
+
+.puppy_inner{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:5rem;
+}
+
+.puppy_description i, p{
+  font-size:5em
+}
+
+.puppy_hidden{
+  display:none;
+}
+
+.whatever{
+  display:flex;
+  gap:2rem;
+}
+
+.puppy_main button{
+  color:white;
+  background: none;
+  outline: none;
+  border:none;
+  font-size:3em;
+  cursor: pointer;
+}
+
+/* carousel */
+
+.carousel{
+  overflow: hidden;
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel_inner{
+  white-space: nowrap;
+  transition: transform .3s;
+  box-shadow: 0 5px 15px rgba(0,0,0, 0.05);
+}
+
+.carousel_item{
+  display:inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel_item_text{
+  white-space:normal
+}
+
+.carousel_buttons{
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.carousel_buttons button, span{
+  padding:1rem;
+  background:none;
+  color:white;
+  font-size:2rem;
+  border:none;
+  cursor: pointer;
+}
