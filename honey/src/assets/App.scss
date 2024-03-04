@@ -20,6 +20,7 @@
 body{
     background-color: #F7F3F0;
     font-family: 'Open_Sans';
+    // overflow: hidden;
 }
 
 .container{
@@ -124,6 +125,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
 
     .texts{
         text-align: center;
@@ -137,8 +139,8 @@ body{
 
     .products{
         display:flex;
-        justify-content: space-between;
-        align-items: center;
+        gap:2rem;
+        cursor: grab;
         
         .jar_div{
             display:flex;
@@ -146,6 +148,10 @@ body{
             gap:1rem;
             justify-content: center;
             align-items: center;
+            transform: translateX(92%);
+
+            min-width: 20%;
+            
 
             p{
                 text-align:center;
@@ -160,10 +166,43 @@ body{
             span{
                 color: var(--brwn-clr);
             }
+            
+            button{
+                padding: 1rem 2.5rem;
+                background-color: var(--brwn-clr);
+                color:white;
+                outline:none;
+                border:none;
+                transition:all .25s ease;
+                border-radius: .3rem;
+                cursor: pointer;
+            }
+            button:hover{
+                background-color: var(--contact-clr);
+            }
         }
     }
 }
+.products_outside{
+    position: relative;
 
+    .arrow_btn{
+        position: absolute;
+        top:55%;
+        padding:1rem;
+        background: none;
+        outline:none;
+        border:none;
+        cursor: pointer;
+    }
+    .arrow_btn1{
+        left:-6%;
+        // transform: translateX(-50%);
+    }
+    .arrow_btn2{
+        left:100%;
+    }
+}
 
 
 
