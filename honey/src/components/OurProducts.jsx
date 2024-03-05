@@ -5,7 +5,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 
 const OurProducts = () => {
 
-    const items = [
+    const items = [ 
         {
             title: "Heather Honey",  
             image: require('../assets/images/jar1.png'),
@@ -49,7 +49,7 @@ const OurProducts = () => {
     ]
 
     const [activeIndex, setActiveIndex ] = React.useState(0)
-    const updateIndex = (newIndex) =>{
+    const updateIndex = (newIndex) =>{  
         if(newIndex < 0) {
             newIndex = items.length - 3
         }else if(newIndex >= items.length - 2) {
@@ -63,9 +63,7 @@ const OurProducts = () => {
     const carousel = React.useRef()
 
     React.useEffect(()=> {
-        console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
         setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
-        console.log(width)
     },[])
 
   return (
