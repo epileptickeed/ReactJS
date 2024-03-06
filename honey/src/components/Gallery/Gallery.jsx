@@ -63,7 +63,7 @@ const Gallery = () => {
   return (
     <div className='gallery_main'>
         <div className="gallery_inner">
-            <h1>Our<br/> Gallery</h1>
+            <h1>Our Gallery</h1>
             <p>Mellifera is a true beehive of activity! Check out the latest news and events in our image gallery and see for yourself.</p>
             <div className="gallery__photos">
                 {images.map((image, index) => {
