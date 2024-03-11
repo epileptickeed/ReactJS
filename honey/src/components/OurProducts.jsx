@@ -63,6 +63,7 @@ const OurProducts = () => {
     const carousel = React.useRef()
 
     React.useEffect(()=> {
+        console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
         setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
     },[])
 
@@ -75,8 +76,8 @@ const OurProducts = () => {
             </div>
             
             <motion.div 
-            drag='x' dragConstraints={{right: 0, left: -width - width}} 
-            animate={{ x:`-${activeIndex * 21.5}%`}} 
+            drag='x' dragConstraints={{right: 0, left: -width}} 
+            animate={{ x:`-${activeIndex * 20.7}%`}} 
             whileTap={{cursor:'grabbing'}}
             ref={carousel}
             className='products'>

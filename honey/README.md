@@ -1,10 +1,8 @@
-добавил какой никакой слайдер свайпер с помощью framer motion:
+# React + Vite
 
-    npm i framer-motion
-он тупо работает в основном из-за карявой верстки, но я хотяб понял как на JSe его делать    
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-на всякий - https://www.youtube.com/watch?v=CMg_1KxpM_4
+Currently, two official plugins are available:
 
-еще не забыть протестить Aceternity UI вродь четко
-
-https://www.figma.com/file/XkssnfRQ3Cto73Vv7tSxCf/10%2B-Free-Web-UI-designs-(Community)?type=design&node-id=0-1&mode=design&t=5LrwK1WgfdyRaKvR-0
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

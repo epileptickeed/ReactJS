@@ -193,17 +193,23 @@ body{
     margin-top: 10rem;
     display:flex;
     justify-content: center;
-    align-items: center;
+    flex-wrap:wrap;
     flex-direction: column;
     overflow: hidden;
 
     .texts{
         text-align: center;
-        max-width: 600px;
+        width: 100%;
         word-break: break-word;
         
         h1{
-            font-size: 48px;
+            font-size: var(--font-size-header);
+            text-align: center;
+            width: 100%;
+        }
+
+        p{
+            font-size:var(--font-size-pars);
         }
     }
 
@@ -218,19 +224,24 @@ body{
             gap:1rem;
             justify-content: center;
             align-items: center;
-            transform: translateX(92%);
+            margin-left: 1.5rem;
 
-            min-width: 20%;
+            
             
 
             p{
                 text-align:center;
-                color: var(--clr-txt-black)
+                color: var(--clr-txt-black);
+                font-size:var(--font-size-pars);
             }
 
             h1, span{
                 font-weight: bold;
                 text-transform: uppercase;
+            }
+
+            h1{
+                font-size:var(--font-size-pars);
             }
 
             span{
@@ -275,6 +286,7 @@ body{
     }
 }
 
+
 .reviews_inner{
     display:flex;
     justify-content: center;
@@ -295,17 +307,20 @@ body{
             animation: reviewFadeIn .5s;
 
             .reviews_card__text{
-                color: #5B5858
+                color: #5B5858;
+                font-size:var(--font-size-pars)
             }
 
             .reviews_card__name{
                 text-transform: uppercase;
+                font-size:var(--font-size-header)
             }
 
             .reviews_card__prof{
                 color:var(--brwn-clr);
                 font-weight: bold;
                 text-transform: uppercase;
+                font-size:var(--font-size-pars)
             }
         }
     }
@@ -405,7 +420,7 @@ body{
                 gap:2rem;
 
                 img{
-                    width: clamp(50%, 700px, 120%);
+                    width: clamp(30%, 700px, 100%);
                     height: min(50%, 300px);
                 }
 
@@ -418,13 +433,13 @@ body{
                     transition:all .25s ease;
                     border-radius: .3rem;
                     cursor: pointer;
-                }
-                button:hover{
-                    background-color: var(--contact-clr);
+
+                    &:hover{
+                        background-color: var(--contact-clr);
+                    }
                 }
             }
         }
-    
     }
 }
 

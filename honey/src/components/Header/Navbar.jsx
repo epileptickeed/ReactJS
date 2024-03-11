@@ -9,13 +9,6 @@ import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
 
-  // window.addEventListener('click', (e)=>{
-  //   if(e.target.className = 'btnOpen'){
-  //     close()
-  //   } 
-  //   return false
-  // })
-
   const [btnActive, setBtnActive] = useState(false)
 
   const close = () => setBtnActive(false)
