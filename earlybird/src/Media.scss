@@ -1,0 +1,29 @@
+@media screen and (max-width: 960px) {
+
+    .cursor{
+        display:none;
+    }
+
+    .navbar{
+        
+        .menuButton{
+            display:block;
+        }
+
+        .nav_items{
+            display:none;
+        }
+    }
+
+
+    .header{
+        grid-template-columns: 1fr;
+
+        .enjoy_block{
+
+            h1{
+                margin:calc(var(--font-size)* 5) auto;
+            }
+        }
+    }
+}
