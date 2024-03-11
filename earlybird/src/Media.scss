@@ -13,6 +13,17 @@
         .nav_items{
             display:none;
         }
+
+        img{
+            width: 90%;
+            padding:0
+        }
+
+        .cart{
+            img{
+                padding:0;
+            }
+        }
     }
 
 
@@ -25,5 +36,49 @@
                 margin:calc(var(--font-size)* 5) auto;
             }
         }
+    }
+
+
+    .organic{
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+    .coffees{
+        display:flex;
+        flex-direction: column;
+
+
+        .coffees_content{
+            flex-direction: column;
+
+            .coffee_item{
+                padding:0;
+
+                
+
+            img{
+                max-width: 100%;
+            }
+            }
+        }
+    }
+
+    
+    .reviews{
+        flex-direction: column;
+
+        .reviews_block{
+            padding-block:4rem;
+        }
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .coffees{
+        grid-template-columns: 1fr 1fr;
+
     }
 }

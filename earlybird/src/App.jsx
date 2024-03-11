@@ -4,6 +4,9 @@ import './App.scss'
 import './Media.scss'
 import Navbar from './components/Header/Navbar'
 import Header from './components/Header/Header'
+import Coffees from './components/Coffees'
+import MoreSection from './components/MoreSection'
+import Reviews from './components/Reviews'
 
 function App() {
 
@@ -53,6 +56,16 @@ function App() {
 
       <Navbar textleave={textLeave} textenter={textEnter}/>
       <Header />
+
+      <div className="organic">
+        <span>Fairtrade</span>
+        <span>Organic</span>
+        <span>Climate neutral</span>
+      </div>
+
+      <Coffees />
+      <MoreSection />
+      <Reviews />
 
     </>
   )

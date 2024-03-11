@@ -26,16 +26,19 @@ const Navbar = ({ textenter, textleave }) => {
 
     const dropIn = {
         hidden: {
-            x: '-50%',
+            x: '-100%',
             opacity: 0,
+            transition: {duration: 0.8, ease: [0.76, 0, 0.24,1]}
         },
         visible: {
             x: '0%',
             opacity: 1,
+            transition: {duration: 0.8, ease: [0.76, 0, 0.24,1]}
         },
         exit: {
-            x:'-50%',
+            x:'-100%',
             opacity: 0,
+            transition: {duration: 0.8, ease: [0.76, 0, 0.24,1]}
         }
     }
 
@@ -50,7 +53,6 @@ const Navbar = ({ textenter, textleave }) => {
                         initial='hidden'
                         animate='visible'
                         exit='exit'
-                        transition={{ type: 'tween', ease: 'backOut'}}
                     >
                         <button className={navVisible ? "notVisible" : "menuButton"} onClick={() => setNavVisible(!navVisible)}><IoCloseSharp size={30}/></button>
                         {navMenu.map( (item, index) => {
