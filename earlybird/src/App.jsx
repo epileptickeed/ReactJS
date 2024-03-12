@@ -7,6 +7,8 @@ import Header from './components/Header/Header'
 import Coffees from './components/Coffees'
 import MoreSection from './components/MoreSection'
 import Reviews from './components/Reviews'
+import Locations from './components/Locations'
+import Products from './components/Products'
 
 function App() {
 
@@ -46,11 +48,11 @@ function App() {
 
   return (
     <>
-      <motion.div className="cursor"
+      {/* <motion.div className="cursor"
         variants={variants}
         animate={cursorVar}
         transition={{type: 'Tween', ease: 'backOut'}}
-      />
+      /> */}
 
       <div className="shippinig">Welcome to Early Birds. We ship every Tuesday and Thursday. Free shipping above €25 in The Netherlands.</div>
 
@@ -66,6 +68,13 @@ function App() {
       <Coffees />
       <MoreSection />
       <Reviews />
+      <Locations />
+
+      <div className="thecoffee">
+        <h1>The coffee that's right for you</h1>
+      </div>
+
+      <Products />
 
     </>
   )
