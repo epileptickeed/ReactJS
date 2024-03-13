@@ -376,7 +376,7 @@ body{
     
         .location_info{
             display:flex;
-            padding:4rem 2rem;
+            padding:2rem 1rem;
             gap:2rem;
             justify-content: center;
             width: 100%;
@@ -433,7 +433,6 @@ body{
 
 
 .products{
-    // display:flex;
     overflow: hidden;
 
     .products_inner{
@@ -442,7 +441,6 @@ body{
         .product_card{
             min-width: 30vw;
             border:1px solid grey;
-            height: 100%;
             padding:.7rem;
             cursor: grab;
     
@@ -460,8 +458,188 @@ body{
             img{
                 pointer-events: none;
                 width: 100%;
-                min-height: 100%;
+            }
+
+        }
+
+        .new{
+            min-width: 30vw;
+            border:1px solid grey;
+            padding:.7rem;
+            cursor: grab;
+            position: relative;
+
+            h1{
+                font-family: var(--anton-font);
+                font-size: calc(var(--font-size) * 1) ;
+                text-transform: uppercase;
+    
+            }
+            p{
+                font-family: var(--space-mono-font);
+            }
+            img{
+                pointer-events: none;
+                width: 100%;
+            }
+
+            &::after{
+                content: 'new';
+                width: 50px;
+                height: 25px;
+                position: absolute;
+                padding:.5rem;
+                top:5%;
+                left:85.5%;
+                background-color: #FBED81;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-family: var(--anton-font);
+                text-transform: uppercase;
             }
         }
+
+        .sold{
+            min-width: 30vw;
+            border:1px solid grey;
+            padding:.5rem;
+            cursor: grab;
+            position: relative;
+
+            h1{
+                font-family: var(--anton-font);
+                font-size: calc(var(--font-size) * 1) ;
+                text-transform: uppercase;
+    
+            }
+    
+            p{
+                font-family: var(--space-mono-font);
+            }
+
+            img{
+                pointer-events: none;
+                width: 100%;
+            }
+
+            &::after{
+                content: 'sold';
+                width: 50px;
+                height: 25px;
+                position: absolute;
+                padding:.5rem;
+                top:5%;
+                left:86%;
+                background-color: #1D1D1B;
+                color:white;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-family: var(--anton-font);
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+
+
+.chars{
+    display:flex;
+    background-color: #FDF1D9;
+        width: 100%;
+    border:1px solid grey;
+
+    h1{
+        font-family: var(--anton-font);
+        text-transform: uppercase;
+    }
+
+
+    .chars_showcase{
+        padding:2rem;
+        width: 70%;
+
+        h1{
+            font-size: clamp(2rem, 3vw, 4.4rem);
+        }
+    }
+
+    .chars_about{
+        display:flex;
+        flex-direction: column;
+        width: 100%;
+
+        .chars_card{
+            padding:2rem;
+            border:1px solid grey;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p{
+                font-family: var(--space-mono-font)
+            }
+
+            button{
+                background: none;
+                border:none;
+                text-transform: uppercase;
+                font-family: var(--anton-font);
+            }
+        }
+    }
+}
+
+
+.reserve_table{
+    background-image: url('./assets/images/select_bg.png');
+    height: 100%;
+    text-align: center;
+    padding-block:7rem;
+
+    h1{
+        font-family:var(--anton-font);
+        font-size:clamp(3.5rem, 3vw, 5rem);
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+    }
+
+    .table{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+
+        form{
+            display:flex;
+
+            gap:2rem;
+
+            select, input[type = date] {
+                width: clamp(200px, 3vw, 400px);
+                border: 0px solid !important;
+                appearance: none;
+                border-bottom:1px solid black !important;
+                background: none;
+                font-family: var(--space-mono-font);
+                
+            }
+            
+            #numberOfPeople{
+                position: relative !important;
+                // border:5px solid red;
+                &::after{
+                    content: 'qwe' !important;
+                    position: absolute !important;
+                    background-color: #1D1D1B;
+                    width: 150px !important;
+                    height: 150px !important;
+                    top: 50% !important;
+                    left: 5% !important;
+                }
+            }
+        };
+
     }
 }

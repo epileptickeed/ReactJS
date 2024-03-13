@@ -41,7 +41,6 @@ const Products = () => {
     const carousel = React.useRef()
 
     React.useEffect(()=> {
-        console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
         setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
     },[])
 
@@ -55,7 +54,7 @@ const Products = () => {
 
         {products.map( (item, index) => {
             return (
-                <motion.div key={index} className="product_card"
+                <motion.div key={index} className={item.new ? 'new' : 'product_card' && item.sold ? 'sold' : 'product_card'}
                 whileTap={{cursor:'grabbing'}}
                 >
                         <img src={item.img} alt={item.title} />

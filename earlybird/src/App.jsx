@@ -9,6 +9,9 @@ import MoreSection from './components/MoreSection'
 import Reviews from './components/Reviews'
 import Locations from './components/Locations'
 import Products from './components/Products'
+import Chars from './components/Chars'
+import Team from './components/Team'
+import ReserveTable from './components/ReserveTable'
 
 function App() {
 
@@ -75,7 +78,12 @@ function App() {
       </div>
 
       <Products />
+      <Chars />
+      <ReserveTable />
 
+      <div className="team_header">our awesome team</div>
+
+      <Team />
     </>
   )
 }
