@@ -52,30 +52,32 @@ const Navbar = () => {
             </button>
         </div>
         <div onClick={() => open()} className='btnOpen'>{btnActive ? '' : <CiMenuFries size={30}/>}</div>
-        {btnActive && (
-            <motion.div 
-              key='modal'
-              className="navbar_toggleMenu"
-              variants={dropIn}
-              initial="hidden"
-              animate="visible"
-              exit="exit">
-              
-              <motion.div className="navbar_toggleMenu__inner" key='notmodal'>
-                <IoMdClose className='' onClick={() => close()} size={30}/>
-                <a href="#">Home</a>
-                <a href="#">Pages</a>
-                <a href="#">Products</a>
-                <a href="#">Blog</a>
-                <a href="#">Portfolio</a>
-                <a href="#"><RiShoppingBasket2Line /></a>
-                <button className='btn_contact'>
-                  contact
-                </button>
-              </motion.div>
+        <AnimatePresence mode='wait'>
+          {btnActive && (
+              <motion.div 
+                key='modal'
+                className="navbar_toggleMenu"
+                variants={dropIn}
+                initial="hidden"
+                animate="visible"
+                exit="exit">
+                
+                <motion.div className="navbar_toggleMenu__inner" key='notmodal'>
+                  <IoMdClose className='' onClick={() => close()} size={30}/>
+                  <a href="#">Home</a>
+                  <a href="#">Pages</a>
+                  <a href="#">Products</a>
+                  <a href="#">Blog</a>
+                  <a href="#">Portfolio</a>
+                  <a href="#"><RiShoppingBasket2Line /></a>
+                  <button className='btn_contact'>
+                    contact
+                  </button>
+                </motion.div>
 
-            </motion.div>
-        )}
+              </motion.div>
+          )}
+        </AnimatePresence>
         
         
     </div>

@@ -191,10 +191,10 @@ body{
 
 .products_main{
     margin-top: 10rem;
-    display:flex;
-    justify-content: center;
-    flex-wrap:wrap;
-    flex-direction: column;
+    // display:flex;
+    // justify-content: center;
+    // flex-wrap:wrap;
+    // flex-direction: column;
     overflow: hidden;
 
     .texts{
@@ -226,8 +226,13 @@ body{
             align-items: center;
             margin-left: 1.5rem;
 
+            min-width: 25%;
+
             
-            
+            img{
+                pointer-events: none;
+                width: 100%;
+            }
 
             p{
                 text-align:center;
