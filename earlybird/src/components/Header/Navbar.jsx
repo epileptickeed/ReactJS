@@ -1,27 +1,58 @@
 import React, { useState } from 'react'
 import { RiMenu2Fill } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
+import { Link } from 'react-router-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
  
-const Navbar = ({ textenter, textleave }) => {
+const Navbar = () => {
 
     const [navVisible, setNavVisible] = useState(true)
 
     const nav = [
-        'Home',
-        'Pages',
-        'Shop',
-        'Blog'
+        {
+            title: 'Home',
+            link: '/',
+        },
+        {
+            title: 'Pages',
+            link: '/pages',
+        },
+        {
+            title: 'Shop',
+            link: '/shop',
+        },
+        {
+            title: 'Blog',
+            link: '/blog',
+        },
     ]
 
     const navMenu = [
-        'Home',
-        'Pages',
-        'Shop',
-        'Blog',
-        'Cart(0)',
-        'Search'
+        {
+            title: 'Home',
+            link: '/',
+        },
+        {
+            title: 'Pages',
+            link: '/pages',
+        },
+        {
+            title: 'Shop',
+            link: '/shop',
+        },
+        {
+            title: 'Blog',
+            link: '/blog',
+        },
+        {
+            title: 'Cart(0)',
+            link: '/cart',
+        },
+        {
+            title: 'Search',
+            link: '/search',
+        },
     ]
 
     const dropIn = {
@@ -56,27 +87,24 @@ const Navbar = ({ textenter, textleave }) => {
                     >
                         <button className={navVisible ? "notVisible" : "menuButton"} onClick={() => setNavVisible(!navVisible)}><IoCloseSharp size={30}/></button>
                         {navMenu.map( (item, index) => {
-                            return(<a key={index} href=''>{item}</a>)
+                            return(<li key={index}> <Link to={item.link}> {item.title} </Link></li>)
                         })}
                     </motion.div>
                 )}
             </AnimatePresence>
             {nav.map( (item, index) => {
-                return( <a 
+                return( <li 
                             key={index} 
-                            href='#'
-                            onMouseEnter={textenter}
-                            onMouseLeave={textleave}
                             className={navVisible ? 'nav_items' : 'notVisible'}
-                            > {item} </a> )
+                            > <Link to={item.link}> {item.title} </Link> </li> )
             })}
         </div>
         <div className="logo">
             <img src={require('../../assets/images/logo.png')} alt="logoearlybird" />
         </div>
         <div className='cart'>
-            <a className={navVisible ? 'nav_items' : 'notVisible'} onMouseEnter={textenter} onMouseLeave={textleave} href="">cart (0)</a>
-            <a className={navVisible ? 'nav_items' : 'notVisible'} onMouseEnter={textenter} onMouseLeave={textleave} href="">search</a>
+            <li className={navVisible ? 'nav_items' : 'notVisible'}> <Link to='/cart'> cart (0)</Link></li>
+            <li className={navVisible ? 'nav_items' : 'notVisible'}> <Link to='/search'> search</Link></li>
             <img src={require('../../assets/images/icon.png')} alt="icon" />
         </div>
     </div>
