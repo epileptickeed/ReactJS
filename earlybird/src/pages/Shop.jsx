@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-const Shop = () => {
+const Shop = ( { addProduct} ) => {
 
     const shopItems = [
         {
@@ -33,18 +33,7 @@ const Shop = () => {
         },
     ]
 
-
-    const [products, setProducts] = useState([])
-
-    const addProduct = (title, price, image) => {
-        setProducts(currentProducts => {
-            return [
-                ...currentProducts,
-                {id: crypto.randomUUID(), title: title, price: price, image: image }
-            ]
-        })
-        console.log(products)
-    } 
+    
 
   return (
     <div className='shop'>
@@ -54,23 +43,10 @@ const Shop = () => {
                     <img src={item.image} alt={item.title} />
                     <h1> {item.title} </h1>
                     <p> ${item.price}.00 </p>
-                    <button onClick={(e) => addProduct( ( item.title, item.price, item.image ) )}> ADD TO CART </button>
+                    <button onClick={() => addProduct( item.title, item.price, item.image )}> ADD TO CART </button>
                 </div>
              )
         })}
-        
-        {products &&  (
-            <div>
-                {products.map( (item, index) => {
-                    return( <div key={index}> 
-                                <img src={item.image} alt="" />
-                                <h1> {item.title} </h1>
-                                <p> {item.price} </p>
-                            </div> )
-                })}
-            </div>
-        )}
-
     </div>
   )
 }

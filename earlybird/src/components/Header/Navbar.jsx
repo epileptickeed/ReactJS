@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
  
-const Navbar = () => {
+const Navbar = ( {lent} ) => {
 
     const [navVisible, setNavVisible] = useState(true)
 
@@ -103,7 +103,7 @@ const Navbar = () => {
             <img src={require('../../assets/images/logo.png')} alt="logoearlybird" />
         </div>
         <div className='cart'>
-            <li className={navVisible ? 'nav_items' : 'notVisible'}> <Link to='/cart'> cart (0)</Link></li>
+            <li className={navVisible ? 'nav_items' : 'notVisible'}> <Link to='/cart'> cart ({lent})</Link></li>
             <li className={navVisible ? 'nav_items' : 'notVisible'}> <Link to='/search'> search</Link></li>
             <img src={require('../../assets/images/icon.png')} alt="icon" />
         </div>
