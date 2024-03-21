@@ -13,6 +13,9 @@ import Products from '../components/Products'
 import Chars from '../components/Chars'
 import Team from '../components/Team'
 import ReserveTable from '../components/ReserveTable'
+import OurSupplies from '../components/OurSupplies'
+import Barista from '../components/Barista'
+import FollowUs from '../components/FollowUs'
 
 const Home = () => {
   return (
@@ -42,6 +45,10 @@ const Home = () => {
     <section className="team_header">our awesome team</section>
 
     <Team />
+
+    <OurSupplies />
+    {/* <Barista /> */}
+    <FollowUs />
 
     </div>
   )

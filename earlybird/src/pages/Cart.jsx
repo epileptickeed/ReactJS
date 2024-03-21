@@ -1,8 +1,9 @@
 import React from 'react'
+import { ProductsContext } from '../App'
 
-const Cart = ( { products, deleteProduct } ) => {
+const Cart = () => {
 
-  // console.log(id)
+  const { products, deleteProduct } = React.useContext(ProductsContext)
 
   let prices = products.map(item => item.price)
   let total = 0
@@ -10,8 +11,6 @@ const Cart = ( { products, deleteProduct } ) => {
   prices.forEach(item => {
     total += item
   })
-  console.log(prices)
-  console.log(total)
 
   return (
     <div className='cart'>
@@ -19,10 +18,10 @@ const Cart = ( { products, deleteProduct } ) => {
         <div className='product_card'>
             {products.map( (item, index) => {
                 return( <div key={index}> 
-                            <img src={item.image} alt="" />
-                            <h1> {item.title} </h1>
-                            <p> ${item.price}.00 </p>
-                            <button onClick={() => deleteProduct(item.id)}> Delete </button>
+                          <img src={item.image} alt="" />
+                          <h1> {item.title} </h1>
+                          <p> ${item.price}.00 </p>
+                          <button onClick={() => deleteProduct(item.id)}> Delete </button>
                         </div> )
             })}
         </div>

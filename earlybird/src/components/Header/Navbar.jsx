@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RiMenu2Fill } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom'
@@ -46,7 +46,7 @@ const Navbar = ( {lent} ) => {
             link: '/blog',
         },
         {
-            title: 'Cart(0)',
+            title: `Cart(${lent})`,
             link: '/cart',
         },
         {
@@ -73,10 +73,18 @@ const Navbar = ( {lent} ) => {
         }
     }
 
+    useEffect(() => {
+        const handler = () => {
+            setNavVisible(true)
+        }
+
+        window.addEventListener('mousedown', handler)
+    },[])
+
   return (
     <div className='navbar'>
         <div className="nav">
-            <button className={navVisible ? "menuButton" : "notVisible"} onClick={() => setNavVisible(!navVisible)}><RiMenu2Fill size={30}/></button>
+            <button className="menuButton" onClick={() => setNavVisible(!navVisible)}><RiMenu2Fill size={30}/></button>
             <AnimatePresence className={navVisible ? 'notVisible' : 'nav_menu'} mode='wait'>
                 {navVisible || (
                     <motion.div className="navMenu"
@@ -85,7 +93,7 @@ const Navbar = ( {lent} ) => {
                         animate='visible'
                         exit='exit'
                     >
-                        <button className={navVisible ? "notVisible" : "menuButton"} onClick={() => setNavVisible(!navVisible)}><IoCloseSharp size={30}/></button>
+                        {/* <button className={navVisible ? "notVisible" : "menuButton"} onClick={() => setNavVisible(!navVisible)}><IoCloseSharp size={30}/></button> */}
                         {navMenu.map( (item, index) => {
                             return(<li key={index}> <Link to={item.link}> {item.title} </Link></li>)
                         })}

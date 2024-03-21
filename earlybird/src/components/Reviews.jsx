@@ -1,4 +1,5 @@
 import React from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Reviews = () => {
 
@@ -23,16 +24,43 @@ const Reviews = () => {
         setReviewNum(i)
     }
 
+    const variants = {
+        hidden: {
+            opacity: 0,
+            ease: [0, 0.71, 0.2, 1.01],
+            scale: 0.5,
+            display: 'none',
+        },
+        visible: {
+            opacity: 1,
+            ease: [0, 0.71, 0.2, 1.01],
+            scale: 1,
+            display: 'block',
+        },
+        exit: {
+            opacity: 0,
+            ease: [0, 0.71, 0.2, 1.01],
+            scale: 0.5,
+        }
+    }
+
   return (
     <div className='reviews'>
         <div className="reviews_block">
-            {reviews.map( (item, index) => {
-                return( 
-                        <div key={index} className={`review_item ${ reviewNum === index ? 'review_item' : 'notActive'}`}>
-                            <h1> {item.title} </h1>
-                            <p> {item.name} </p>
-                        </div> )
-            })}
+            <AnimatePresence>
+                {reviews.map( (item, index) => {
+                    return( 
+                            <motion.div key={index} className={`review_item `}
+                            variants={variants}
+                            initial='hidden'
+                            animate={reviewNum === index ? 'visible' : 'hidden'}
+                            exit='exit'
+                            >
+                                <h1> {item.title} </h1>
+                                <p> {item.name} </p>
+                            </motion.div> )
+                })}
+            </AnimatePresence>
 
             <div className='spans'>
                 {reviews.map( (item, index) => {

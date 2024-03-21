@@ -60,7 +60,7 @@ const Products = () => {
                         <img src={item.img} alt={item.title} />
                         <h1> {item.title} </h1>
                         <p> ${item.price}.00 </p>
-                    </motion.div>
+                </motion.div>
             )
         })}
 

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { ProductsContext } from '../App'
 
-const Shop = ( { addProduct} ) => {
+
+const Shop = () => {
+    const { addProduct } = React.useContext(ProductsContext)
 
     const shopItems = [
         {
@@ -33,20 +36,32 @@ const Shop = ( { addProduct} ) => {
         },
     ]
 
-    
+    const [searchValue, setSearchValue] = useState('')
 
   return (
     <div className='shop'>
-        {shopItems.map( (item, index) => {
-            return ( 
-                <div key={index} className='product_card'>
-                    <img src={item.image} alt={item.title} />
-                    <h1> {item.title} </h1>
-                    <p> ${item.price}.00 </p>
-                    <button onClick={() => addProduct( item.title, item.price, item.image )}> ADD TO CART </button>
-                </div>
-             )
-        })}
+
+    <input type="search"
+        className='search'
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+    />
+        <div className="shopInner">
+            {shopItems.filter((obj) => {
+                if(obj.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())){
+                    return true
+                }
+            }).map( (item, index) => {
+                return ( 
+                    <div key={index} className='product_card'>
+                        <img src={item.image} alt={item.title} />
+                        <h1> {item.title} </h1>
+                        <p> ${item.price}.00 </p>
+                        <button onClick={() => addProduct( item.title, item.price, item.image )}> ADD TO CART </button>
+                    </div>
+                )
+            })}
+        </div>
     </div>
   )
 }

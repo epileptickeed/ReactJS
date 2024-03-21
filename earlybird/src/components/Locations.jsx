@@ -37,17 +37,17 @@ const Locations = () => {
 
     const variants = {
         default: {
-            width: '100%',
+            // width: '100%',
             opacity: 1,
             transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1]}
         },
         hidden: {
-            width: '0%',
+            // width: '0%',
             opacity: 0,
             transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1]}
         },
         exit: {
-            width: '0%',
+            // width: '0%',
             opacity: 0,
             transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1]}
         }
@@ -68,7 +68,7 @@ const Locations = () => {
                             <motion.div 
                                 className={ locIndex === index ? "location_info" : 'notActive'}
                                 variants={variants}
-                                animate='default'
+                                animate={ locIndex === index ? 'default' : ''}
                                 initial='hidden'
                                 exit='exit'
                             >
