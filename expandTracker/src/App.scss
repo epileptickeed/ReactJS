@@ -1,0 +1,196 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/font/Montserrat-VariableFont_wght.ttf');
+}
+
+body{
+    font-family: 'Montserrat';
+    background-color: #cacaca50;
+}
+
+.main_wrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+
+    .home{
+        width: 500px;
+        height: 100%;
+        background-color: white;
+        position: relative;
+
+        .header{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:1rem;
+        }
+
+        .expenses{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 6rem;
+
+            h2{
+                color:#cacaca;
+                text-transform: uppercase;
+                font-size:1rem;
+            }
+
+            h1{
+                color:tomato;
+                font-size: 4rem;
+            }
+
+        }
+
+        .events{
+            margin-top: 3rem;
+            padding:1rem;
+            // overflow: hidden;
+        }
+
+        .footer{
+            position: absolute;
+            background-color: white;
+            z-index: 1;
+            top: 92.7%;
+            width: 100%;
+            // height: 100%;
+            padding:1rem;
+            border-top:1px solid #cacaca50;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .popUp{
+            background-color: #ececec;
+            height: 100%;
+            z-index: 2;
+            top:0;
+            left:0;
+            width: 100%;
+            position: absolute;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap:2rem;
+
+            .btn{
+                padding:1rem 2rem;
+                border:0px;
+                border-radius: .5rem;
+                margin-inline: .5rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all .25s ease;
+            }
+
+            .btnDanger{
+                background-color: #ff634790;
+
+                &:hover{
+                    background-color: #ff6347;
+                }
+            }
+
+            .btnNext{
+                background-color: #27272750;
+
+                &:hover{
+                    background-color: #272727;
+                }
+            }
+
+            h1{
+                font-size: 1.5rem;
+            }
+
+            input{
+                border:none;
+                border-bottom: 1px solid grey;
+                padding:1rem;
+                width: 60%;
+                background: none;
+                outline:none;
+                text-align: center;
+                font-size: 4rem;
+                font-weight: bold;
+                color: grey;
+            }
+
+            .confirm{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top:50%;
+                background-color: #272727;
+
+            }
+        }
+
+        .tag{
+            cursor: pointer;
+
+            &:hover{
+                color:#3f3f3f50;
+            }
+        }
+
+        .tags{
+            position: absolute;
+            background-color: #cecece;
+            border-top: 1px solid #74747450;
+            top:0;
+            width: 100%;
+            height: 100%;
+            padding:1rem;
+            text-align: center;
+            z-index: 3;
+
+            .tags_arr{
+                margin-top: 2rem;
+                display:flex;
+                justify-content: center;
+                gap:1rem;
+                // height: 100%;
+
+                .tags_arr__item{
+                    transition: all .25s ease;
+                    cursor: pointer;
+
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+svg{
+   cursor: pointer; 
+}
+
+.hidden{
+    display:none;
+}
+
+.active{
+    display:block;
+}
+
