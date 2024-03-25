@@ -11,11 +11,6 @@ export const Context = React.createContext()
 const Home = () => {
 
   const [expenses, setExpenses] = useState(0)
-  const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0)
-
-  
-
-
   const [priceValue, setPriceValue] = useState(0)
   
   const [activity, setActivity] = useState(() => {

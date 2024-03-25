@@ -6,7 +6,7 @@ import { Context } from '../pages/Home'
 
 const PopUp = () => {
 
-    const { popUpActive, setPopUpActive, tagActive, setTagActive, pickedTag, setPickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, activity, setActivity, expenses, setExpenses, sum} = React.useContext(Context)
+    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, setActivity} = React.useContext(Context)
 
 
     let date = new Date()
@@ -36,14 +36,15 @@ const PopUp = () => {
         setActivity(currentActivities => {
             return [
                 ...currentActivities,
-                {id: crypto.randomUUID(), title: pickedTag, price: priceValue}
+                {id: crypto.randomUUID(), title: pickedTag, price: priceValue,}
             ]
         })
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 500)
+        
     }
-
-    
-
-
 
   return (
     <div>
@@ -82,7 +83,8 @@ const PopUp = () => {
                         <h2>Confirm</h2>
                         <p>Help us ensure accuracy by reviewing your expense before confirming because you can edit it later.</p>
                         <p> {priceValue} {pickedTag} </p>
-                        <button onClick={() => setConfirmActive(false)}>Cancel</button> <button onClick={() => confirmHandler()}>Confirm</button>
+                        <button onClick={() => setConfirmActive(false)}>Cancel</button>
+                        <button onClick={() => confirmHandler()}>Confirm</button>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -12,12 +12,11 @@ const Tags = () => {
 
     const expensesVars = [
         {
+            emoji: '🏡',
             title: 'rent',
-            price: 10
         },
         {
             title: 'health',
-            price: 15
         },
     ]
 
@@ -43,7 +42,12 @@ const Tags = () => {
         <h3>EXPENSES</h3>
         <div className='tags_arr'>
             {expensesVars.map( (item, index) => {
-                return <div className='tags_arr__item' key={index} onClick={(e) => setTagHandler(e)}> {item.title} </div>
+                return( 
+                <div className='tags_arr__item' key={index} onClick={(e) => setTagHandler(e)}> 
+                    <div className="emoji__item">{item.emoji}</div> 
+                    <div className="emoji__title">{item.title}</div>  
+                </div>
+                 )
             })}
         </div>
     </motion.div>

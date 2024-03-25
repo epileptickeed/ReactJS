@@ -60,6 +60,35 @@ body{
             margin-top: 3rem;
             padding:1rem;
             // overflow: hidden;
+
+            .activities{
+                display:flex;
+                justify-content: center;
+                flex-direction:column-reverse;
+                gap: .5rem;
+
+                .activ__inner{
+                    display:flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .activ__right{
+                        
+                        .btnDel{
+                            padding-inline: .5rem;
+                            border-radius: .2rem;
+                            border: 2px solid tomato;
+                            background-color: #ff634750;
+                            transition: all .25s ease;
+                            cursor: pointer;
+
+                            &:hover{
+                                background-color: tomato;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .footer{
@@ -172,6 +201,8 @@ body{
                 .tags_arr__item{
                     transition: all .25s ease;
                     cursor: pointer;
+                    display:flex;
+                    flex-direction: column;
 
                     &:hover{
                         transform: scale(1.1);
