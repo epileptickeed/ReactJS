@@ -22,29 +22,30 @@ const PopUp = () => {
         exit: {opacity: 0, y: '100%'},
     }
 
-    const nextHandler = () => {
-        if(pickedTag !== 'select your tag' && priceValue !== 0) {
+    const nextHandler = () => { // след
+        if(pickedTag !== 'select your tag' && priceValue > 0){
             setConfirmActive(true)
-        } else return false
-
+        }else return false
     }
 
-    const confirmHandler = () => {
-        setConfirmActive(false)
-        setPopUpActive(false)
+    const confirmHandler = () => { // конферм баттон
+        if(priceValue > 0){
+            setConfirmActive(false)
+            setPopUpActive(false)
 
-        setActivity(currentActivities => {
-            return [
-                ...currentActivities,
-                {id: crypto.randomUUID(), title: pickedTag, price: priceValue,}
-            ]
-        })
+            setActivity(currentActivities => {
+                return [
+                    ...currentActivities,
+                    {id: crypto.randomUUID(), title: pickedTag, price: priceValue,}
+                ]
+            })
+            setTimeout(() => {
+                window.location.reload();
+            }, 500)
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 500)
-        
+        }else return false
     }
+
 
   return (
     <div>
