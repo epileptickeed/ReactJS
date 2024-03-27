@@ -37,33 +37,11 @@ const FollowUs = () => {
         },
     ]
     
-    const [width, setWidth] = React.useState(0)
-    const ref = useRef(null)
-
-    const xTranslation = useMotionValue()
-
     
-    useEffect(() => {
-        let controls 
-
-        setWidth(ref.current.scrollWidth - ref.current.offsetWidth)
-
-        let finalPosition = -width / 1.09
-        
-        controls = animate(xTranslation, [0, finalPosition], {
-            ease: 'linear',
-            duration: 15,
-            repeat: Infinity,
-            repeatType: 'loop',
-            repeatDelay: 0,
-        });
-        
-        return controls.stop
-    }, [xTranslation, width])
 
   return (
     <div className='followUs'>
-        <motion.div ref={ref} style={{x: xTranslation}}  className="followUs_inner">
+        <motion.div className="followUs_inner">
             {follow.map( (item, index) => {
                 return ( 
                     <div key={index} className='followUs_inner__card'>

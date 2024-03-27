@@ -180,6 +180,14 @@
     .team{
         flex-wrap: wrap;
     }
+
+    .followUs{
+        overflow: hidden;
+        
+        .followUs_inner{
+            grid-template-columns: repeat(2, 50%);
+        }
+    }
 }
 
 

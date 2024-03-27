@@ -3,7 +3,6 @@ import './App.scss'
 import './Media.scss'
 import { Route, Routes } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './redux/slices/CartSlice'
 
 import Navbar from './components/Header/Navbar'
 import Home from './pages/Home'
@@ -12,7 +11,6 @@ import Shop from './pages/Shop'
 import Pages from './pages/Pages'
 import Blog from './pages/Blog'
 import Cart from './pages/Cart'
-import Search from './pages/Search'
 
 export const ProductsContext = createContext()
 

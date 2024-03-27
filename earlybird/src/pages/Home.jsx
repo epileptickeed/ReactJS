@@ -16,6 +16,8 @@ import ReserveTable from '../components/ReserveTable'
 import OurSupplies from '../components/OurSupplies'
 import Barista from '../components/Barista'
 import FollowUs from '../components/FollowUs'
+import OurCoffee from '../components/OurCoffee'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
@@ -34,9 +36,7 @@ const Home = () => {
     <Reviews />
     <Locations />
 
-    <div className="thecoffee">
-    <h1>The coffee that's right for you</h1>
-    </div>
+    <section className="thecoffee">The coffee that's right for you</section>
 
     <Products />
     <Chars />
@@ -46,10 +46,15 @@ const Home = () => {
 
     <Team />
 
-    <OurSupplies />
     {/* <Barista /> */}
+
+    <OurSupplies />
+    <OurCoffee />
+    <section className="team_header">Follow us for more</section>
     <FollowUs />
 
+    <Footer />
+    
     </div>
   )
 }
