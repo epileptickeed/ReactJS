@@ -1,0 +1,158 @@
+*{
+  margin:0;padding:0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'space_mono';
+}
+
+@font-face {
+  font-family: 'space_mono';
+  src: url('./assets/font/SpaceMono-Regular.ttf');
+}
+
+.container{
+  max-width: 90%;
+  margin:0 auto;
+}
+
+
+.notActiveImg{
+  display:none;
+}
+
+
+.dropMenu{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: gray;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.navbar{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:2rem;
+
+  ul{
+    display:flex;
+    gap:2.5rem;
+
+    li{
+      list-style-type: none;
+
+      a{
+        text-decoration: none;
+        color:grey;
+        transition: all .25s ease;
+
+        &:hover{
+          color:#131313
+        }
+      }
+    }
+  }
+  
+  .toggleNavMenu, button {
+    display:none
+  }
+}
+
+
+.cars{
+  display:flex;  
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+  .cars_names{
+
+    .cars_names__inner{
+
+      ul{
+        
+        li{
+          list-style-type: none;
+          margin:1rem;
+          padding:.5rem;
+          cursor: pointer;
+          transition: all .15s ease;
+
+          &:hover{
+            background-color: gray;
+          }
+        }
+      };
+    }
+  }
+
+  .cars_image{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 300px;
+
+    .cars_image_inner{
+      width: 100%;
+
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+
+@media screen and (max-width: 960px){
+
+  .navbar{
+    position: relative;
+
+    .toggleNavMenu{
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-direction: column;
+      border:1px solid;
+      height: 100vh;
+      top:0;
+      right:0;  
+      padding:0;
+      margin:0;
+      padding:2rem;
+
+      ul{
+        display:flex;
+      }
+    }
+
+    .navMenu{
+      display:none;
+    }
+
+    .buttonActive{
+      display:block;
+    }
+
+    button{
+      border: none;
+      background: none;
+      z-index: 1;
+    }
+  }
+
+ 
+
+  .notActiveBtn{
+    display:none
+  }
+}
