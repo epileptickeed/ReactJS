@@ -43,31 +43,31 @@ const Navbar = () => {
     }, [])
 
     const [isOpen, setIsOpen] = useState(false)
-    console.log(isOpen)
 
   return (
     <div className='navbar'>
-        <motion.div variants={liVars} initial='hidden' animate='show' transition={{ delay: 1.9}}>
-            <Link to={'/'}>Logo</Link>
+        <motion.div variants={liVars} initial='hidden' animate='show' transition={{ delay: 2}}>
+            <Link to={'/'}> <img src={require('/public/logo.png')} alt="" /> </Link>
         </motion.div>
         
         <motion.ul className='navMenu' variants={ulVars} initial='hidden' animate='show'>
             <motion.li variants={liVars}> <Link to={'/'}>Home</Link> </motion.li>
             <motion.li variants={liVars}> <Link to={'/about'}>About us</Link> </motion.li>
             <motion.li variants={liVars}> <Link to={'/store'}>Store</Link> </motion.li>
+            <motion.li variants={liVars}> <Link to={'/store'}>Blog</Link> </motion.li>
         </motion.ul>
 
         <motion.button 
             className={isOpen ? 'notActiveBtn' : 'buttonActive'}
-            variants={liVars} initial='hidden' animate='show' transition={{ delay: 2}}
+            variants={liVars} initial='hidden' animate='show' transition={{ delay: 2.2}}
             > 
-            <CiMenuFries size={30} onClick={() => setIsOpen(true)} />
+            <CiMenuFries size={30} color='white' onClick={() => setIsOpen(true)} />
         </motion.button>
 
         <motion.button 
             className={isOpen ? 'buttonActive' : 'notActiveBtn'}
         > 
-            <IoClose size={30} onClick={() => setIsOpen(false)}/>
+            <IoClose size={30} color='white' onClick={() => setIsOpen(false)}/>
         </motion.button>
 
         <AnimatePresence mode='wait'>
@@ -80,6 +80,7 @@ const Navbar = () => {
                         <li><Link to={'/'}>Home</Link></li>
                         <li><Link to={'/about'}>About us</Link></li>
                         <li><Link to={'/store'}>Store</Link></li>
+                        <li><Link to={'/store'}>Blog</Link></li>
                     </ul>
                 </motion.div>
             )}

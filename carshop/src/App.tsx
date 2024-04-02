@@ -17,6 +17,10 @@ function App() {
       y: '-100%'
     }
   }
+  const imgVars = {
+    hidden: { opacity: 0 },
+    default: { opacity: 1 }
+  }
 
   return (
     <>
@@ -25,9 +29,9 @@ function App() {
         variants={vars}
         initial='default'
         animate='hidden'
-        transition={{ delay: 1, duration: .7, type: 'tween', ease: circIn}}
+        transition={{ delay: 1.3, duration: .7, type: 'tween', ease: circIn}}
       >
-        Logo
+        <motion.img variants={imgVars} initial='hidden' animate='default' transition={{ delay: .6 }} src={require('/public/logo.png')} alt="" />
       </motion.div>
 
       <div className="container">
