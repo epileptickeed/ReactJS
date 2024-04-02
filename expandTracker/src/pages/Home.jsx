@@ -6,49 +6,69 @@ import Footer from '../components/Footer'
 import PopUp from '../components/PopUp'
 import Tags from '../components/Tags'
 
+import { db } from '../../config/firebase'
+import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore'
+
 export const Context = React.createContext()
 
 const Home = () => {
 
-  const [expenses, setExpenses] = useState(0) // все затраты
-  const [priceValue, setPriceValue] = useState(0) // стоимость услуги
+  const [expenses, setExpenses] = useState(0)
+  const [priceValue, setPriceValue] = useState(0)
   
-  // const [activity, setActivity] = useState(() => { // все услуги 
-  //   const localValue = localStorage.getItem('ITEMS')
-  //   if (localValue == null) return []
+  const [activity, setActivity] = useState(() => {
+    const localValue = localStorage.getItem('ITEMS')
+    if (localValue == null) return []
 
-  //   return JSON.parse(localValue)
-  // })
-
-  const [activity, setActivity] = useState([])
-
-  const [allTags, setAllTags] = useState(() => { // все теги
-    const localValue2 = localStorage.getItem('ITEMS')
-    if(localValue2 == null) return []
-
-    return JSON.parse(localValue2)
+    return JSON.parse(localValue)
   })
 
   useEffect(() => {
     localStorage.setItem('ITEMS', JSON.stringify(activity))
-  }, [activity, allTags])
+  }, [activity])
+
+  const [popUpActive, setPopUpActive] = useState(false)
+  const [tagActive, setTagActive] = useState(false)
+  const [ConfirmActive, setConfirmActive] = useState(false)
+
+  const [pickedTag, setPickedTag] = useState('select your tag') 
 
 
-  
-
-  const [popUpActive, setPopUpActive] = useState(false) // попап с ценой и выбором тэга
-  const [tagActive, setTagActive] = useState(false) // попап с тэгом
-  const [ConfirmActive, setConfirmActive] = useState(false) // попап с подтверждением
-
-  const [pickedTag, setPickedTag] = useState('select your tag') // выбранный тэг 
-
-
-  // сумма всех тэгов
   let sum = 0
   let result = activity.map(v => sum += +v.price)
+
+//в events идёт а в home чтоб вызвать функцию эту 
+  const expensesCollectionRef = collection(db, "expenses")
+
+  const deleteItem = async(id) => {
+    const delDoc = doc(db, "expenses", id)
+    await deleteDoc(delDoc)
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
+  }
+
+  const allEvents = async() => {
+
+    try{
+      const eventData = await getDocs(expensesCollectionRef)
+      const filteredData = eventData.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }))
+      setActivity(filteredData)
+      setExpenses(sum)
+    } catch (err) {
+      console.error(err)
+    }
+
+  }
+  
   useEffect(() => {
+    allEvents(),
     setExpenses(sum)
-  })
+  }, [])
+
 
   return (
     <div className='home'>
@@ -56,9 +76,10 @@ const Home = () => {
         value={{
           expenses, setExpenses, sum,
           activity, setActivity,
-          priceValue, setPriceValue,
 
-          allTags, setAllTags,
+          deleteItem, allEvents,
+
+          priceValue, setPriceValue,
 
           ConfirmActive, setConfirmActive,
           popUpActive, setPopUpActive,
