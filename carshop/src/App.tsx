@@ -21,14 +21,14 @@ function App() {
   return (
     <>
 
-      {/* <motion.div className="dropMenu"
+      <motion.div className="dropMenu"
         variants={vars}
         initial='default'
         animate='hidden'
         transition={{ delay: 1, duration: .7, type: 'tween', ease: circIn}}
       >
         Logo
-      </motion.div> */}
+      </motion.div>
 
       <div className="container">
         <Navbar />

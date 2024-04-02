@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CiMenuFries } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
 
@@ -34,12 +34,22 @@ const Navbar = () => {
         }
     }
 
+    useEffect(() => {
+        const handleClick = () => {
+            setIsOpen(false)
+        }
+
+        window.addEventListener('mousedown', handleClick)
+    }, [])
+
     const [isOpen, setIsOpen] = useState(false)
     console.log(isOpen)
 
   return (
     <div className='navbar'>
-        <motion.div variants={liVars} initial='hidden' animate='show' transition={{ delay: 1.9}}>Logo</motion.div>
+        <motion.div variants={liVars} initial='hidden' animate='show' transition={{ delay: 1.9}}>
+            <Link to={'/'}>Logo</Link>
+        </motion.div>
         
         <motion.ul className='navMenu' variants={ulVars} initial='hidden' animate='show'>
             <motion.li variants={liVars}> <Link to={'/'}>Home</Link> </motion.li>
@@ -63,7 +73,8 @@ const Navbar = () => {
         <AnimatePresence mode='wait'>
             {isOpen && (
                 <motion.div className={isOpen ? 'toggleNavMenu': 'notActive'}
-                variants={menuVars} initial='hidden' animate={'active'} exit='exit'
+                    variants={menuVars} initial='hidden' animate={'active'} exit='exit'
+                    transition={{ type: 'backOut' }}
                 >
                     <ul>
                         <li><Link to={'/'}>Home</Link></li>

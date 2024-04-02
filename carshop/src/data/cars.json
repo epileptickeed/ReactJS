@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "image": "../public/cars/mercedes.jpg",
+        "image": "/cars/mercedes.jpg",
         "title": "Mercedes CL AMG 63",
         "hundred": 3.7,
         "year": 2013,
@@ -9,7 +9,7 @@
     },
     {
         "id": 1,
-        "image": "../public/cars/bmw.jpg",
+        "image": "/cars/bmw.jpg",
         "title": "BMW",
         "hundred": 4,
         "year": 2022,
