@@ -5,3 +5,4 @@ require() for vite React app:
     3. in "vite.config.js" put "vitePluginRequire.default()" in "plugins: []"
 
 
+For inspiration: https://www.referest.com
