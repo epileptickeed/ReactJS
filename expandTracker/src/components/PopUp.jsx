@@ -3,11 +3,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { CiShoppingTag } from "react-icons/ci";
 import { Context } from '../pages/Home'
 
+import { db } from '../../config/firebase'
+import { collection, addDoc } from 'firebase/firestore'
 
 const PopUp = () => {
 
     const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, setActivity} = React.useContext(Context)
 
+    const expensesCollectionRef = collection(db, "expenses")
 
     let date = new Date()
     let weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -28,20 +31,21 @@ const PopUp = () => {
         }else return false
     }
 
-    const confirmHandler = () => { // конферм баттон
+    const confirmHandler = async() => { // конферм баттон
         if(priceValue > 0){
             setConfirmActive(false)
             setPopUpActive(false)
 
-            setActivity(currentActivities => {
-                return [
-                    ...currentActivities,
-                    {id: crypto.randomUUID(), title: pickedTag, price: priceValue,}
-                ]
+            // setActivity(currentActivities => {
+            //     return [
+            //         ...currentActivities,
+            //         {id: crypto.randomUUID(), title: pickedTag, price: priceValue,}
+            //     ]
+            // })
+           
+            await addDoc(expensesCollectionRef, {
+                tag: pickedTag, Date: new Date(), price: priceValue
             })
-            setTimeout(() => {
-                window.location.reload();
-            }, 500)
 
         }else return false
     }

@@ -13,12 +13,14 @@ const Home = () => {
   const [expenses, setExpenses] = useState(0) // все затраты
   const [priceValue, setPriceValue] = useState(0) // стоимость услуги
   
-  const [activity, setActivity] = useState(() => { // все услуги 
-    const localValue = localStorage.getItem('ITEMS')
-    if (localValue == null) return []
+  // const [activity, setActivity] = useState(() => { // все услуги 
+  //   const localValue = localStorage.getItem('ITEMS')
+  //   if (localValue == null) return []
 
-    return JSON.parse(localValue)
-  })
+  //   return JSON.parse(localValue)
+  // })
+
+  const [activity, setActivity] = useState([])
 
   const [allTags, setAllTags] = useState(() => { // все теги
     const localValue2 = localStorage.getItem('ITEMS')
@@ -46,7 +48,7 @@ const Home = () => {
   let result = activity.map(v => sum += +v.price)
   useEffect(() => {
     setExpenses(sum)
-  }, [])
+  })
 
   return (
     <div className='home'>
