@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyC65hSDGqOxpJEbo_0q3WxOfvsBdf2xOHs",
@@ -15,5 +18,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+export const auth = getAuth(app)
+export const provider = new GoogleAuthProvider()
+
 
 export const db = getFirestore(app)

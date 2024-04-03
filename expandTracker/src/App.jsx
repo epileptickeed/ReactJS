@@ -2,18 +2,24 @@ import React,{ useEffect, useState } from 'react'
 import './App.scss'
 import Home from './pages/Home'
 import Analytics from './pages/Analytics'
+import SignIn from './pages/SignIn'
 import { Routes, Route } from 'react-router-dom'
 
 import { db } from '../config/firebase'
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore'
+import { AuthContextProvider } from '../context/AuthContextProvider'
+import { UserAuth } from '../context/AuthContextProvider'
 
 export const Context = React.createContext()
 
 function App() {
 
   const [expenses, setExpenses] = useState(0) // все траты
-  const [priceValue, setPriceValue] = useState(0) // намбер в инпуте фигово работает :(
-    
+  const [priceValue, setPriceValue] = useState(0) // намбер в инпуте фигово работает :( 
+        //мб попробовать в UseMemo PriceValue??? чтоб типо инпут не багался?
+
+  const { user, logOut } = UserAuth()
+  console.log(user)
   
   const [activity, setActivity] = useState([])
   
@@ -66,31 +72,37 @@ function App() {
 
   return (
     <div className='main_wrapper'>
-      <Context.Provider
-        value={{
-          expenses, setExpenses, sum,
-          activity, setActivity,
+      <AuthContextProvider>
+        <Context.Provider
+          value={{
+            expenses, setExpenses, sum,
+            activity, setActivity,
 
-          theme, setTheme,
+            theme, setTheme,
 
-          deleteItem, allEvents,
+            deleteItem, allEvents,
 
-          priceValue, setPriceValue,
+            priceValue, setPriceValue,
 
-          ConfirmActive, setConfirmActive,
-          popUpActive, setPopUpActive,
-          tagActive, setTagActive,
+            ConfirmActive, setConfirmActive,
+            popUpActive, setPopUpActive,
+            tagActive, setTagActive,
 
-          pickedTag, setPickedTag
-        }}
-      >
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/analytics' element={<Analytics />}></Route>
-        </Routes> 
-        
+            pickedTag, setPickedTag
+          }}
+        >
+            <Routes>
+              <Route path='/' element={<Home />}></Route>
+              <Route path='/analytics' element={<Analytics />}></Route>
+            </Routes> 
+            <SignIn />
+          
+          
+          
 
-      </Context.Provider>
+        </Context.Provider>
+      </AuthContextProvider>
+      
     </div>
   )
 }
