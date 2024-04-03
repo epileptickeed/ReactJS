@@ -11,7 +11,7 @@ const Expenses = () => {
   return (
     <div className='expenses'> 
         <h2>Spent this month</h2>
-        <h1> {expenses}$ </h1>
+        <h1 className='expensesHeader'> {expenses}$ </h1>
     </div>
   )
 }

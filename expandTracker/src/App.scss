@@ -18,11 +18,16 @@ span,
 h2,
 h1,
 h3,
-button,
 p{
     mix-blend-mode: difference;
     color:white;
 }
+
+.expensesHeader{
+    mix-blend-mode: normal;
+}
+
+
 
 .main_wrapper{
     display:flex;
@@ -31,33 +36,33 @@ p{
     height: 100vh;
     margin: 0 auto;
     position: relative;
-    overflow: hidden;
 
     .home{
         width: 500px;
         height: 100%;
         position: relative;
-
+        overflow-y: scroll;
+        
         .header{
             display:flex;
             justify-content: space-between;
             align-items: center;
             padding:1rem;
         }
-
+        
         .expenses{
             display:flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             margin-top: 6rem;
-
+            
             h2{
                 color:#cacaca;
                 text-transform: uppercase;
                 font-size:1rem;
             }
-
+            
             h1{
                 color:tomato;
                 font-size: 4rem;
@@ -70,21 +75,24 @@ p{
             padding:1rem;
 
             .activities{
+                gap: 1rem;
                 display:flex;
                 justify-content: center;
                 flex-direction:column;
-                gap: .5rem;
 
                 .activ__inner{
                     display:flex;
                     justify-content: space-between;
                     align-items: center;
+                    border-bottom: 1px solid #cacaca50;
+                    padding-block: 1rem;
 
                     .activ__right{
                         
                         .btnDel{
                             padding-inline: .5rem;
                             border-radius: .2rem;
+                            padding:.2rem 1rem;
                             border: 2px solid tomato;
                             background-color: #ff634750;
                             transition: all .25s ease;
@@ -100,10 +108,10 @@ p{
         }
 
         .footer{
-            position: absolute;
-            z-index: 1;
+            position: fixed;
+            z-index: 2;
             top: 91.5%;
-            width: 100%;
+            width: 500px;
             padding:1rem;
             border-top:1px solid #cacaca50;
             display:flex;
@@ -114,11 +122,12 @@ p{
         .popUp{
             background-color: #ececec;
             height: 100%;
-            z-index: 2;
+            z-index: 3;
             top:0;
-            left:0;
-            width: 100%;
-            position: absolute;
+            // left:50%;
+            // transform: translateX(-100%);
+            width: 500px;
+            position: fixed;
             display:flex;
             align-items: center;
             justify-content: center;
@@ -252,7 +261,7 @@ p{
         .footer{
             position: absolute;
             z-index: 1;
-            top: 91.5%;
+            top: 91%;
             width: 100%;
             padding:1rem;
             border-top:1px solid #cacaca50;

@@ -34,7 +34,7 @@ const Tags = () => {
   return (
     <motion.div className={'tags'}
         initial='hidden'
-        animate={tagActive ? 'active' : ''}
+        animate={tagActive ? 'active' : 'hidden'}
         exit='exit'
         variants={vars}
         transition={{duration: 0.8, ease: [.2, 0, 0.24,1]}}

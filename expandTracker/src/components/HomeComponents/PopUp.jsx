@@ -53,7 +53,7 @@ const PopUp = () => {
             variants={vars}
             transition={{duration: 0.8, ease: [.2, 0, 0.24,1]}}
             initial='hidden'
-            animate={popUpActive ? 'active' : ''}
+            animate={popUpActive ? 'active' : 'hidden'}
             exit='exit'
         >
             <h1> Today at {weekDay[day]} {monthNames[month]} {day} {year} </h1>
@@ -77,7 +77,7 @@ const PopUp = () => {
                         variants={vars}
                         transition={{duration: 0.8, ease: [.2, 0, 0.24,1]}}
                         initial='hidden'
-                        animate={ConfirmActive ? 'active' : ''}
+                        animate={ConfirmActive ? 'active' : 'hidden'}
                         exit='exit'
                     >
                         <h2>Confirm</h2>

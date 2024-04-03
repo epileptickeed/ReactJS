@@ -4,7 +4,7 @@ import { Context } from '../../App'
 
 const Events = () => {
 
-  const { expenses, setExpenses, activity, setActivity, deleteItem } = React.useContext(Context)
+  const { expenses, setExpenses, activity, setActivity, deleteItem, theme } = React.useContext(Context)
 
   return (
     <div className='events'>
@@ -16,7 +16,7 @@ const Events = () => {
                 <h3> {item.tag || item.title} </h3>
                 <div className="activ__right">
                   <span> {item.price}$ </span> 
-                  <button onClick={() => deleteItem(item.id)} className='btn btnDel'>delete</button> 
+                  <button onClick={() => deleteItem(item.id)} className='btn btnDel' style={theme ? {color: 'white'} : {color: 'black'}}>delete</button> 
                 </div>
               </div> 
             )
