@@ -1,0 +1,32 @@
+[
+    {
+        "title": "MAXPUMP",
+        "img": "/public/brands/maxpump.png",
+        "id": 0
+    },
+    {
+        "title": "ARON GYM",
+        "img": "/public/brands/arongym.png",
+        "id": 1
+    },
+    {
+        "title": "FIT & TONE",
+        "img": "/public/brands/fit&tone.png",
+        "id": 2
+    },
+    {
+        "title": "FORZA",
+        "img": "/public/brands/forza.png",
+        "id": 3
+    },
+    {
+        "title": "BALANCE FITNESS",
+        "img": "/public/brands/balancefitness.png",
+        "id": 4
+    },
+    {
+        "title": "BODY SCULPT",
+        "img": "/public/brands/bodysculpt.png",
+        "id": 5
+    }
+]

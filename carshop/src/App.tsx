@@ -34,14 +34,12 @@ function App() {
         <motion.img variants={imgVars} initial='hidden' animate='default' transition={{ delay: .6 }} src={require('/public/logo.png')} alt="" />
       </motion.div>
 
-      <div className="container">
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/store' element={<Store />}></Route>
-        </Routes>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/store' element={<Store />}></Route>
+      </Routes>
       
     </>
   )

@@ -17,7 +17,7 @@ const Header = () => {
                 src={require('/public/arrow.png')} alt="" />
                 <div className="headers">
                     <motion.h1 
-                    variants={vars} initial='hidden' animate='animate' transition={{ delay: 2.35}}
+                    variants={vars} initial='hidden' animate='animate' viewport={{ once: true }} transition={{ delay: 2.35 }}
                     >NEW EVENT</motion.h1>
 
                     <motion.h1 
