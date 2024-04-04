@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { FaPlus } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa";
-import { Context } from '../../App' 
 import { Link } from 'react-router-dom'
+import { UseMainContext } from '../../../context/MainContext';
 
 const Footer = () => {
 
-  const { setPopUpActive, theme } = React.useContext(Context)
+  const { setPopUpActive, theme } = UseMainContext()
 
   return (
     <div className='footer' style={ theme ? { backgroundColor: '#131313' } : { backgroundColor: 'white' }}>

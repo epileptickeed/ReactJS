@@ -5,12 +5,12 @@ import Events from '../components/HomeComponents/Events'
 import Footer from '../components/HomeComponents/Footer'
 import PopUp from '../components/HomeComponents/PopUp'
 import Tags from '../components/HomeComponents/Tags'
-import { Context } from '../App' 
+import { UseMainContext } from '../../context/MainContext'
 
 
 const Home = () => {
 
-  const { theme } = React.useContext(Context)
+  const { theme } = UseMainContext()
 
   return (
     <div className='home' style={ theme ? { backgroundColor: '#131313' } : { backgroundColor: 'white' }}>

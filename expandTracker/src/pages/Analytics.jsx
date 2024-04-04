@@ -1,11 +1,11 @@
 import React from 'react'
-import { Context } from '../App' 
 import Header from '../components/AnalyticsComponents/Header'
 import Footer from '../components/AnalyticsComponents/Footer'
+import { UseMainContext } from '../../context/MainContext'
 
 const Analitycs = () => {
 
-    const { theme } = React.useContext(Context)
+    const { theme } = UseMainContext()
 
   return (
     <div className='analytics' style={ theme ? {backgroundColor: '#131313'} : {backgroundColor: 'white'}}>

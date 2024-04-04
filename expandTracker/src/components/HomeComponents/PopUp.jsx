@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CiShoppingTag } from "react-icons/ci";
-import { Context } from '../../App' 
 
 import { db } from '../../../config/firebase'
 import { collection, addDoc } from 'firebase/firestore'
+import { UseMainContext } from '../../../context/MainContext';
 
 
 const PopUp = () => {
 
-    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, allEvents} = React.useContext(Context)
+    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, allEvents} = UseMainContext()
+
 
     let date = new Date()
     let weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]

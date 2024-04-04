@@ -5,13 +5,14 @@ import { IoExitOutline } from "react-icons/io5";
 import { Context } from '../../App' 
 import { UserAuth } from '../../../context/AuthContextProvider';
 import { useNavigate } from 'react-router-dom';
+import { UseMainContext } from '../../../context/MainContext';
 
 
 const Header = () => {
 
   const navigate = useNavigate()
 
-  const { theme, setTheme } = React.useContext(Context)
+  const { theme, setTheme } = UseMainContext()
   const { user, logOut } = UserAuth()
 
   const handleSignOut = async() => {

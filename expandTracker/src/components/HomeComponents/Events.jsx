@@ -1,10 +1,9 @@
 import React from 'react'
-import { Context } from '../../App' 
-
+import { UseMainContext } from '../../../context/MainContext'
 
 const Events = () => {
 
-  const { expenses, setExpenses, activity, setActivity, deleteItem, theme } = React.useContext(Context)
+  const { expenses, setExpenses, activity, setActivity, deleteItem, theme } = UseMainContext()
 
   return (
     <div className='events'>

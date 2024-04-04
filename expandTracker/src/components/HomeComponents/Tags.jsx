@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Context } from '../../App' 
+import { UseMainContext } from '../../../context/MainContext'
 
 
 
 const Tags = () => {
 
 
-    const { tagActive, setTagActive, setPickedTag} = React.useContext(Context)
-
+    const { tagActive, setTagActive, setPickedTag} = UseMainContext()
 
     const expensesVars = [
         {

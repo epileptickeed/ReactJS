@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { FaMoon } from "react-icons/fa";
 import { LuSunMedium } from "react-icons/lu";
 import { IoExitOutline } from "react-icons/io5";
-import { Context } from '../../App' 
+import { UseMainContext } from '../../../context/MainContext';
 
 
 const Header = () => {
 
-  const { theme, setTheme } = React.useContext(Context)
-
+  const { theme, setTheme } = UseMainContext()
   return (
     <div className='header'>
         <div className='page_theme'>

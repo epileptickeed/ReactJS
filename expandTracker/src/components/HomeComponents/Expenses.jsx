@@ -1,9 +1,10 @@
 import React from 'react'
 import { Context } from '../../App' 
+import { UseMainContext } from '../../../context/MainContext'
 
 const Expenses = () => {
 
-  const { expenses } = React.useContext(Context)
+  const { expenses } = UseMainContext()
 
   
   
