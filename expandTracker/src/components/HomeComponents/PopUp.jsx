@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { CiShoppingTag } from "react-icons/ci";
 
 import { db } from '../../../config/firebase'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { UseMainContext } from '../../../context/MainContext';
 
 
@@ -12,12 +12,14 @@ const PopUp = () => {
     const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, allEvents} = UseMainContext()
 
 
-    let date = new Date()
+    let newDate = new Date()
     let weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let day = date.getDay()
-    let month = date.getMonth()
-    let year = date.getFullYear()
+    let day = newDate.getDay()
+    let month = newDate.getMonth()
+    let year = newDate.getFullYear()
+    let minutes = newDate.getMinutes()
+    let hours = newDate.getHours()
 
     const vars = {
         hidden: {opacity: 0, y: '100%'},
@@ -40,8 +42,9 @@ const PopUp = () => {
             setPopUpActive(false)
            
             await addDoc(expensesCollectionRef, {
-                tag: pickedTag, Date: new Date(), price: priceValue
+                tag: pickedTag, dateHours: hours ,dateMin: minutes, price: priceValue
             })
+            console.log(expensesCollectionRef)
             
             allEvents()
         }else return false

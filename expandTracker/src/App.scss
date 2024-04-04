@@ -11,7 +11,7 @@
 
 body{
     font-family: 'Montserrat';
-    background-color: #cacaca50;
+    
 }
 
 span,
@@ -36,6 +36,7 @@ p{
     height: 100vh;
     margin: 0 auto;
     position: relative;
+    // background-color: #cacaca50;
 
     .home{
         width: 500px;
@@ -253,6 +254,7 @@ p{
     .analytics{
         width: 500px;
         height: 100%;
+        overflow: hidden;
         position: relative;
 
         .header{
@@ -261,6 +263,27 @@ p{
             align-items: center;
             padding:1rem;
         }
+
+
+        .highestspent{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background-color: #acacac20;
+            padding:1rem;
+            margin:1.5rem;
+            border-radius: 1rem;
+
+            .spentLeft{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                gap:1rem;
+                
+            }
+        }
+
 
         .footer{
             position: absolute;

@@ -9,10 +9,21 @@ const Footer = () => {
 
   const { setPopUpActive, theme } = UseMainContext()
 
+  const handleSignOut = async() => {
+    try{  
+      await logOut()
+      if(user == null) {
+        navigate('/')
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <div className='footer' style={ theme ? { backgroundColor: '#131313' } : { backgroundColor: 'white' }}>
       <Link to='/'><FaHome color={theme ? 'white' : 'black'} size={30}/></Link>  
-      <FaPlus color={theme ? 'white' : 'black'} className='svgplus' size={30} onClick={() => setPopUpActive(true)}/>
+      <FaPlus color={theme ? 'white' : 'black'} className='svgplus' size={30} />
       <FaRobot color={theme ? 'white' : 'black'} size={30}/>
     </div>
   )

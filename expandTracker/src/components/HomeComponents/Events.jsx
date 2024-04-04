@@ -3,7 +3,9 @@ import { UseMainContext } from '../../../context/MainContext'
 
 const Events = () => {
 
-  const { expenses, setExpenses, activity, setActivity, deleteItem, theme } = UseMainContext()
+  const { activity, deleteItem, theme } = UseMainContext()
+  
+  console.log(activity)
 
   return (
     <div className='events'>
@@ -12,7 +14,11 @@ const Events = () => {
           {activity.map( (item, index) => {
             return ( 
               <div className='activ__inner' key={index}> 
-                <h3> {item.tag || item.title} </h3>
+                <div className="activ_left">
+                  <h3> {item.tag || item.title} </h3>
+                  <span> {item.dateHours}:{item.dateMin} </span> 
+                </div>
+                
                 <div className="activ__right">
                   <span> {item.price}$ </span> 
                   <button onClick={() => deleteItem(item.id)} className='btn btnDel' style={theme ? {color: 'white'} : {color: 'black'}}>delete</button> 

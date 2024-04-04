@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { FaMoon } from "react-icons/fa";
 import { LuSunMedium } from "react-icons/lu";
 import { IoExitOutline } from "react-icons/io5";
-import { Context } from '../../App' 
 import { UserAuth } from '../../../context/AuthContextProvider';
 import { useNavigate } from 'react-router-dom';
 import { UseMainContext } from '../../../context/MainContext';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Context } from '../../App' 
 import { UseMainContext } from '../../../context/MainContext'
 
 
