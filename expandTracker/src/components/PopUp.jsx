@@ -6,10 +6,11 @@ import { Context } from '../pages/Home'
 import { db } from '../../config/firebase'
 import { collection, addDoc } from 'firebase/firestore'
 
-
 const PopUp = () => {
 
-    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, setActivity, allEvents, setExpenses, sum} = React.useContext(Context)
+    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, setActivity} = React.useContext(Context)
+
+    const expensesCollectionRef = collection(db, "expenses")
 
     let date = new Date()
     let weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -24,30 +25,31 @@ const PopUp = () => {
         exit: {opacity: 0, y: '100%'},
     }
 
-    const nextHandler = () => {
-        if(pickedTag !== 'select your tag' && priceValue !== 0) {
+    const nextHandler = () => { // след
+        if(pickedTag !== 'select your tag' && priceValue > 0){
             setConfirmActive(true)
-        } else return false
-
+        }else return false
     }
-
-    const expensesCollectionRef = collection(db, "expenses")
 
     const confirmHandler = async() => { // конферм баттон
         if(priceValue > 0){
             setConfirmActive(false)
             setPopUpActive(false)
+
+            // setActivity(currentActivities => {
+            //     return [
+            //         ...currentActivities,
+            //         {id: crypto.randomUUID(), title: pickedTag, price: priceValue,}
+            //     ]
+            // })
            
             await addDoc(expensesCollectionRef, {
                 tag: pickedTag, Date: new Date(), price: priceValue
             })
-            
-            allEvents()
-            setTimeout(() => {
-                window.location.reload()
-            }, 700)
+
         }else return false
     }
+
 
   return (
     <div>

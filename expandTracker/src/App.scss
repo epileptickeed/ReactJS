@@ -75,10 +75,13 @@ p{
             padding:1rem;
 
             .activities{
-                gap: 1rem;
                 display:flex;
                 justify-content: center;
                 flex-direction:column;
+
+                &:last-child{
+                    padding-bottom: 3rem;
+                }
 
                 .activ__inner{
                     display:flex;
@@ -86,9 +89,10 @@ p{
                     align-items: center;
                     border-bottom: 1px solid #cacaca50;
                     padding-block: 1rem;
-
                     .activ__right{
                         
+                        
+
                         .btnDel{
                             padding-inline: .5rem;
                             border-radius: .2rem;
@@ -215,11 +219,11 @@ p{
         }
 
         .tags{
-            position: absolute;
+            position: fixed;
             background-color: #cecece;
             border-top: 1px solid #74747450;
             top:0;
-            width: 100%;
+            width: 500px;
             height: 100%;
             padding:1rem;
             text-align: center;

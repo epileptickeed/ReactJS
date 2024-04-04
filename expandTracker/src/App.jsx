@@ -9,6 +9,7 @@ import { db } from '../config/firebase'
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore'
 import { AuthContextProvider } from '../context/AuthContextProvider'
 import { UserAuth } from '../context/AuthContextProvider'
+import Protected from './components/Protected'
 
 export const Context = React.createContext()
 
@@ -17,9 +18,6 @@ function App() {
   const [expenses, setExpenses] = useState(0) // все траты
   const [priceValue, setPriceValue] = useState(0) // намбер в инпуте фигово работает :( 
         //мб попробовать в UseMemo PriceValue??? чтоб типо инпут не багался?
-
-  const { user, logOut } = UserAuth()
-  console.log(user)
   
   const [activity, setActivity] = useState([])
   
@@ -92,13 +90,18 @@ function App() {
           }}
         >
             <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/analytics' element={<Analytics />}></Route>
+              <Route path='/home' element={ <Protected> <Home /> </Protected>}></Route>
+              <Route
+               path='/analytics' 
+               element={ 
+                <Protected> 
+                  <Analytics /> 
+                </Protected>
+                }>
+              </Route>
+              <Route path='/' element={<SignIn />}></Route>
             </Routes> 
-            <SignIn />
-          
-          
-          
+            
 
         </Context.Provider>
       </AuthContextProvider>

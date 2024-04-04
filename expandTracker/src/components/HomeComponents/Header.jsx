@@ -3,11 +3,27 @@ import { FaMoon } from "react-icons/fa";
 import { LuSunMedium } from "react-icons/lu";
 import { IoExitOutline } from "react-icons/io5";
 import { Context } from '../../App' 
+import { UserAuth } from '../../../context/AuthContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
 
+  const navigate = useNavigate()
+
   const { theme, setTheme } = React.useContext(Context)
+  const { user, logOut } = UserAuth()
+
+  const handleSignOut = async() => {
+    try{
+      await logOut()
+      if(user == null) {
+        navigate('/')
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   return (
     <div className='header'>
@@ -19,7 +35,7 @@ const Header = () => {
         <h1>EXPENSES</h1>
 
         <div className='exit'>
-          <IoExitOutline color={theme ? 'white' : 'black'} size={40}/>
+          <IoExitOutline onClick={() => handleSignOut()} color={theme ? 'white' : 'black'} size={40}/>
         </div>
     </div>
   )
