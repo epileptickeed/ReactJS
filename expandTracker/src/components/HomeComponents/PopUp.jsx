@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CiShoppingTag } from "react-icons/ci";
 
-import { db } from '../../../config/firebase'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { auth, db } from '../../../config/firebase'
+import { collection, addDoc, serverTimestamp, query, where } from 'firebase/firestore'
 import { UseMainContext } from '../../../context/MainContext';
+import { AuthContextProvider, UserAuth } from '../../../context/AuthContextProvider';
 
 
 const PopUp = () => {
 
-    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, allEvents} = UseMainContext()
+    const { popUpActive, setPopUpActive, setTagActive, pickedTag, priceValue, setPriceValue, ConfirmActive, setConfirmActive, allEvents } = UseMainContext()
+    const { user } = UserAuth()
 
 
     let newDate = new Date()
@@ -20,6 +22,9 @@ const PopUp = () => {
     let year = newDate.getFullYear()
     let minutes = newDate.getMinutes()
     let hours = newDate.getHours()
+
+
+    const userID = user?.uid
 
     const vars = {
         hidden: {opacity: 0, y: '100%'},
@@ -42,13 +47,23 @@ const PopUp = () => {
             setPopUpActive(false)
            
             await addDoc(expensesCollectionRef, {
-                tag: pickedTag, dateHours: hours ,dateMin: minutes, price: priceValue
+                tag: pickedTag, dateHours: hours, dateMin: minutes, price: priceValue, date: new Date(), user: auth.currentUser.displayName
             })
-            console.log(expensesCollectionRef)
+            // console.log(expensesCollectionRef)
             
             allEvents()
         }else return false
     }
+
+    useEffect(() => {
+        const queryEvents = query(
+            expensesCollectionRef,
+            where("user", "==", user)
+            //orderBy("date") <-- сделать, вроде бы в 11:00 обновиться quota
+        )
+        // console.log(queryEvents)
+    }, [])
+    // console.log(user)
 
   return (
     <div>

@@ -50,7 +50,26 @@ export const MainContext = ({ children }) => {
         }
 
     }
+
+
+    const [testPrice, setTestPrice] = useState([{}])
+    const priceEvents = async() => {
+        try {
+            const priceEvent = await getDocs(expensesCollectionRef)
+            const filteredPriceData = priceEvent.docs.map((doc) => ({
+                ...doc.data().price,
+                // id: doc.id
+            }))
+            setTestPrice(filteredPriceData)
+        } catch (err){
+            console.error(err)
+        }
+    }
+    priceEvents()
     
+
+    
+
     //чтоб грузило базу сразу при загрузке стр 
     useEffect(() => {
         allEvents()
@@ -69,6 +88,8 @@ export const MainContext = ({ children }) => {
             activity, setActivity,
 
             theme, setTheme,
+
+            testPrice, setTestPrice,
 
             deleteItem, allEvents,
 

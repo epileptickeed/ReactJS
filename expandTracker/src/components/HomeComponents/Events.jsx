@@ -5,7 +5,7 @@ const Events = () => {
 
   const { activity, deleteItem, theme } = UseMainContext()
   
-  console.log(activity)
+  // console.log(activity)
 
   return (
     <div className='events'>
