@@ -12,29 +12,7 @@ const AllPages = () => {
 
   return (
     <div className='main_wrapper' style={theme ? { backgroundColor: '#272727' } : { backgroundColor: '#cacaca50'}}>
-        <Routes>
-
-            <Route
-                path='/home' 
-                element={ 
-                    <Protected> 
-                        <Home /> 
-                    </Protected>
-                }>
-            </Route>
-
-            <Route
-                path='/analytics' 
-                element={ 
-                    <Protected> 
-                        <Analytics /> 
-                    </Protected>
-                }>
-            </Route>
-
-            <Route path='/' element={<SignIn />}></Route>
-
-            </Routes> 
+        
     </div>
   )
 }

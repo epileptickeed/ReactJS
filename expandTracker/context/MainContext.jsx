@@ -35,8 +35,11 @@ export const MainContext = ({ children }) => {
         allEvents()
     }
 
-    const allEvents = async() => {
 
+    // короче какая то фигня с firebase'oм он заставляет по кд рендериться стр
+    // TODO: сначала попробовать разобраться в этом ли прична
+    // TODO №2:спросить на стаковерфлоу
+    const allEvents = async() => {
         try{
         const eventData = await getDocs(expensesCollectionRef)
         const filteredData = eventData.docs.map((doc) => ({
@@ -46,12 +49,12 @@ export const MainContext = ({ children }) => {
         setActivity(filteredData)
         setExpenses(sum)
         } catch (err) {
-        console.error(err)
+            console.error(err)
         }
 
     }
 
-
+    //Может даже вина этой шляпи :(
     const [testPrice, setTestPrice] = useState([{}])
     const priceEvents = async() => {
         try {
@@ -68,6 +71,7 @@ export const MainContext = ({ children }) => {
     priceEvents()
     
 
+    console.log('hello')
     
 
     //чтоб грузило базу сразу при загрузке стр 

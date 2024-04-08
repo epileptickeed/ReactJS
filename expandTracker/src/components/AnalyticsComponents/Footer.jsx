@@ -9,16 +9,7 @@ const Footer = () => {
 
   const { setPopUpActive, theme } = UseMainContext()
 
-  const handleSignOut = async() => {
-    try{  
-      await logOut()
-      if(user == null) {
-        navigate('/')
-      }
-    } catch (err) {
-      console.error(err)
-    }
-  }
+ 
 
   return (
     <div className='footer' style={ theme ? { backgroundColor: '#131313' } : { backgroundColor: 'white' }}>
