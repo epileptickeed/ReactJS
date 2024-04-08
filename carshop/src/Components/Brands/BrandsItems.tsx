@@ -1,5 +1,5 @@
-import { animate, useMotionValue } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+
 
 type BrandsItemsProps = {
     title: string
@@ -7,35 +7,24 @@ type BrandsItemsProps = {
     id: number
 }
 
-const BrandsItems = ({ title, img }: BrandsItemsProps) => {
+const BrandsItems = ({ title, img, id }: BrandsItemsProps) => {
 
-    const [width, setWidth] = React.useState(0)
-    const containerRef = useRef()
-    const refValue = containerRef.current
-    const xTranslation = useMotionValue(0)
-
-    useEffect(() => {
-        let controls 
-        setWidth(containerRef.current.scrollWidth - containerRef.current.offsetWidth)
-
-        let finalPosition = -width / 1.09
-        
-        controls = animate(xTranslation, [0, finalPosition], {
-            ease: 'linear',
-            duration: 15,
-            repeat: Infinity,
-            repeatType: 'loop',
-            repeatDelay: 0,
-        });
-        
-        return controls.stop
-    }, [xTranslation, width])
+    const vars = {
+        hidden: { opacity: 0, y: 50},
+        show: (id: number) => ({ 
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.10 * id
+            }
+        })
+    }
 
   return (
-    <div className='brands_card' ref={containerRef} style={{x: xTranslation}}>
+    <motion.div className='brands_card' variants={vars} initial='hidden' whileInView='show' custom={id} viewport={{ once: true}}>
         <img src={img} alt={title} />
         <h2>{title}</h2>
-    </div>
+    </motion.div>
   )
 }
 

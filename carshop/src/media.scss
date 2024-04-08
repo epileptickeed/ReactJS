@@ -1,0 +1,101 @@
+@media screen and (max-width: 960px){
+
+    .navbar{
+      position: relative;
+  
+      .toggleNavMenu{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        border:1px solid;
+        height: 100vh;
+        top:0;
+        right:0;  
+        padding:0;
+        margin:0;
+        padding:2rem;
+  
+        ul{
+          display:flex;
+          flex-direction: column;
+        }
+      }
+  
+      .navMenu{
+        display:none;
+      }
+  
+      .buttonActive{
+        display:block;
+      }
+  
+      button{
+        border: none;
+        background: none;
+        z-index: 1;
+      }
+    }
+  
+   
+    .header{
+      overflow: hidden;
+      height: 100%;
+  
+      .header__inner{
+        .top{
+          flex-direction: column;
+          align-items: start;
+        }
+  
+        .bottom{
+          overflow:hidden;  
+          position: relative;
+          h1{
+            font-size: calc(var(--font-size) * 5);
+            // position: absolute;
+          }
+        }
+      }
+    }
+  
+    .notActiveBtn{
+      display:none
+    }
+  
+
+
+    .stronger{
+        padding:5rem;
+        .stronger_inner{
+            flex-direction: column;
+            padding:0rem;
+      
+            .stronger_img{
+              img{
+                  width: 200px;
+                  margin-bottom: 50%;
+              }
+            }
+          }
+    }
+
+    .daytostart{
+        padding:7rem 5rem;
+        .daytostart_inner{
+            flex-direction: column-reverse;
+            padding:0rem;
+        
+            .daytostart_img{
+              img{
+                margin-bottom: 50%;
+                width: 200px;
+              };
+            }
+          }
+    }
+    
+  
+    
+  }

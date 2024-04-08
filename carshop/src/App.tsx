@@ -4,6 +4,7 @@ import Home from "./Pages/Home"
 import Store from "./Pages/Store"
 import { Routes, Route } from "react-router-dom"
 import './App.scss'
+import './media.scss'
 import { circIn, motion } from 'framer-motion'
 
 function App() {
