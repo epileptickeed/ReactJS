@@ -6,8 +6,11 @@ import {
   signOut,
   onAuthStateChanged,
   getAuth,
+  createUserWithEmailAndPassword,
+  getRedirectResult,
 } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { auth, db } from '../config/firebase';
+import { Timestamp, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -16,22 +19,11 @@ export const AuthContextProvider = ({ children }) => {
 
   
 
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    // signInWithPopup(auth, provider);
+  const googleSignIn = async() => {
+    const provider = new GoogleAuthProvider()
+
     signInWithRedirect(auth, provider)
   };
-
-  // const author = getAuth()
-  // const userA = author.currentUser;
-  // if (user !== null) {
-  //   const displayName = user.displayName;
-  //   const email = user.email;
-  //   const photoUrl = user.photoUrl;
-  //   const emailVer = user.emailVer
-  // }
-  
-  // console.log(userA)
 
   const logOut = () => {
     signOut(auth)
@@ -40,7 +32,18 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // console.log('User', currentUser)
+      if(currentUser){
+        setDoc(doc(db, "users", currentUser.uid), {
+          userId: currentUser.uid,
+          email: currentUser.email,
+          username: currentUser.displayName,
+          date: serverTimestamp(),
+        });  
+      }
+
+      // 09.04.24 ^^^^ сделал теперь когда заходить кто-то то создаётся новый юзер в users 
+      // TODO: сделать чтоб теперь разная инфа отображалась в зависимости от юзера, надеюсь это видео поможет => https://www.youtube.com/watch?v=D9W7AFeJ3kk
+      console.log(currentUser)
     });
     return () => {
       unsubscribe();

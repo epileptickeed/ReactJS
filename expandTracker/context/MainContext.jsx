@@ -14,6 +14,7 @@ export const MainContext = ({ children }) => {
   
     const [activity, setActivity] = useState([])
     
+    // console.log('hello')
     
     const [theme, setTheme] = useState(false) // тема для стр
     const [popUpActive, setPopUpActive] = useState(false) //попАп 1ый для инпута
@@ -21,6 +22,9 @@ export const MainContext = ({ children }) => {
     const [ConfirmActive, setConfirmActive] = useState(false) //попАп для конферма
 
     const [pickedTag, setPickedTag] = useState('select your tag') 
+
+    const onlyPrice = activity.map(item => parseFloat(item.price)) //<-- получение всех прайсов а потом самого большого из них
+    const highestPrice = Math.max(...onlyPrice)
 
     // сумма для expenses
     let sum = 0
@@ -35,11 +39,8 @@ export const MainContext = ({ children }) => {
         allEvents()
     }
 
-
-    // короче какая то фигня с firebase'oм он заставляет по кд рендериться стр
-    // TODO: сначала попробовать разобраться в этом ли прична
-    // TODO №2:спросить на стаковерфлоу
     const allEvents = async() => {
+
         try{
         const eventData = await getDocs(expensesCollectionRef)
         const filteredData = eventData.docs.map((doc) => ({
@@ -49,34 +50,33 @@ export const MainContext = ({ children }) => {
         setActivity(filteredData)
         setExpenses(sum)
         } catch (err) {
-            console.error(err)
+        console.error(err)
         }
 
     }
 
-    //Может даже вина этой шляпи :(
+
     const [testPrice, setTestPrice] = useState([{}])
     const priceEvents = async() => {
         try {
             const priceEvent = await getDocs(expensesCollectionRef)
             const filteredPriceData = priceEvent.docs.map((doc) => ({
                 ...doc.data().price,
-                // id: doc.id
             }))
             setTestPrice(filteredPriceData)
         } catch (err){
             console.error(err)
         }
+        
     }
-    priceEvents()
     
 
-    console.log('hello')
     
 
     //чтоб грузило базу сразу при загрузке стр 
     useEffect(() => {
         allEvents()
+        priceEvents()
     }, [])
 
     // при изменение [sum] призывается setExpenses(sum) 
@@ -93,7 +93,7 @@ export const MainContext = ({ children }) => {
 
             theme, setTheme,
 
-            testPrice, setTestPrice,
+            testPrice, setTestPrice, highestPrice,
 
             deleteItem, allEvents,
 

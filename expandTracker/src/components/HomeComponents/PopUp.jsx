@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { CiShoppingTag } from "react-icons/ci";
 
 import { auth, db } from '../../../config/firebase'
-import { collection, addDoc, serverTimestamp, query, where, orderBy } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp, query, where } from 'firebase/firestore'
 import { UseMainContext } from '../../../context/MainContext';
 import { AuthContextProvider, UserAuth } from '../../../context/AuthContextProvider';
 
@@ -58,8 +58,7 @@ const PopUp = () => {
     useEffect(() => {
         const queryEvents = query(
             expensesCollectionRef,
-            where("user", "==", user),
-            orderBy("date")
+            // where("user", "==", user)
             //orderBy("date") <-- сделать, вроде бы в 11:00 обновиться quota
         )
         // console.log(queryEvents)

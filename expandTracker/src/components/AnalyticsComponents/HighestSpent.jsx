@@ -4,19 +4,7 @@ import { UseMainContext } from '../../../context/MainContext';
 
 const HighestSpent = () => {
 
-    const { activity, testPrice } = UseMainContext()
-
-    // let jsonTest = JSON.stringify(testPrice)
-    // console.log(jsonTest)
-    
-    // const names = jsonTest.map(item => item.name)
-
-    
-    // useEffect(() => {
-        // console.log(names)
-        // console.log(testPrice)
-        // console.log(arr)
-    // }, [])
+    const { activity, testPrice, highestPrice } = UseMainContext()
 
   return (
     <div className='highestspent'>
@@ -31,7 +19,7 @@ const HighestSpent = () => {
         </div>
 
         <div className="spentRight">
-            price
+            <b>{highestPrice}$</b>
         </div>  
         
     </div>
