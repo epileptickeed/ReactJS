@@ -1,12 +1,17 @@
 import React from 'react'
 import { useContext, createContext, useState, useMemo, useEffect } from 'react'
 
-import { db } from '../config/firebase'
-import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore'
+import { auth, db } from '../config/firebase'
+import { getDocs, collection, deleteDoc, doc, getDoc } from 'firebase/firestore'
+import { UserAuth } from './AuthContextProvider'
+import { getAuth } from 'firebase/auth'
 
 const Context = createContext()
 
 export const MainContext = ({ children }) => {
+
+
+    
 
     const [expenses, setExpenses] = useState(0) // все траты
     const [priceValue, setPriceValue] = useState(0) // намбер в инпуте фигово работает :( 
@@ -16,7 +21,7 @@ export const MainContext = ({ children }) => {
     
     // console.log('hello')
     
-    console.log(activity)
+    // console.log(activity)
 
 
     const [theme, setTheme] = useState(false) // тема для стр
@@ -42,21 +47,29 @@ export const MainContext = ({ children }) => {
         allEvents()
     }
 
-    const allEvents = async() => {
+    
 
+    const { user, setUser } = UserAuth()
+    // console.log(user.uid)
+    
+    const allEvents = async(auth, currentUser) => {       
+        
+        const userDocRef = doc(db, "users", currentUser.uid)
+        const userExpensesCollectionRef = collection(userDocRef, "expenses")
         try{
-        const eventData = await getDocs(expensesCollectionRef)
-        const filteredData = eventData.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id
-        }))
-        setActivity(filteredData)
-        setExpenses(sum)
-        } catch (err) {
-        console.error(err)
-        }
 
-    }    
+            const eventData = await getDocs(userExpensesCollectionRef)
+            const filteredData = eventData.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id
+            }))
+            setActivity(filteredData)
+            setExpenses(sum)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    
 
     //чтоб грузило базу сразу при загрузке стр 
     useEffect(() => {
