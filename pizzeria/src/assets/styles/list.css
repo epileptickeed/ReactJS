@@ -1,0 +1,27 @@
+.list ul {
+    display:flex;
+    align-items: center;
+    gap:.5rem;
+}
+
+.list ul li{
+    list-style-type: none;
+    border-radius: 2rem;
+    padding:1rem;
+    padding-inline: 2rem;
+    background-color: var(--soft-grey);
+    cursor: pointer;
+    transition: all ease .25s;
+    color:#272727;
+    margin:0;
+}
+
+.list ul li:hover{
+    background-color: #272727;
+    color:white;
+}
+
+.list .list-active{
+    background-color: #272727;
+    color:white;
+}

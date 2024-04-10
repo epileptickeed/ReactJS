@@ -1,0 +1,49 @@
+img{
+    width: 50px;
+}
+
+.header{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.header_inner{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    display:flex;
+    gap:1rem
+}
+
+.logo_inner h1{
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.logo_inner span{
+    color: rgb(198, 198, 198)
+}
+
+.cart{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    color:white;
+    border-radius: 2rem;
+    padding:1rem;
+    width: 5rem;
+    background-color: var(--clr-ornge);
+}
+
+hr{
+    position: absolute;
+    width: 100%;
+    left:0;
+    margin-top: 3rem;
+    height: 1px;
+    background-color: rgb(222, 222, 222);
+    border: 0px;
+}
