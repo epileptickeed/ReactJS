@@ -41,18 +41,29 @@ const PopUp = () => {
 
     const expensesCollectionRef = collection(db, "expenses")
 
-    const confirmHandler = async() => { // конферм баттон
+     const confirmHandler = async() => { // конферм баттон
         if(priceValue > 0){
             setConfirmActive(false)
             setPopUpActive(false)
+
+            if(auth.currentUser) {
+                await addDoc(expensesCollectionRef, {
+                    tag: pickedTag,
+                    dateHours: hours,
+                    dateMin: minutes,
+                    price: priceValue,
+                    date: new Date(),
+                    user: auth.currentUser.uid
+                })
+
+                console.log("Expense added successfully for user:", auth.currentUser.uid);
+
+                allEvents()
+            } else {
+                console.error("user not auth-ed")
+            } 
            
-            await addDoc(expensesCollectionRef, {
-                tag: pickedTag, dateHours: hours, dateMin: minutes, price: priceValue, date: new Date(), user: auth.currentUser.displayName
-            })
-            // console.log(expensesCollectionRef)
-            
-            allEvents()
-        }else return false
+        } else return false
     }
 
     useEffect(() => {
