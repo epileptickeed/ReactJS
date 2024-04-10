@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { CiShoppingTag } from "react-icons/ci";
 
 import { auth, db } from '../../../config/firebase'
-import { collection, addDoc, serverTimestamp, query, where } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp, query, where, orderBy } from 'firebase/firestore'
 import { UseMainContext } from '../../../context/MainContext';
 import { AuthContextProvider, UserAuth } from '../../../context/AuthContextProvider';
 
@@ -49,18 +49,34 @@ const PopUp = () => {
             await addDoc(expensesCollectionRef, {
                 tag: pickedTag, dateHours: hours, dateMin: minutes, price: priceValue, date: new Date(), user: auth.currentUser.displayName
             })
-            // console.log(expensesCollectionRef)
+            console.log(expensesCollectionRef)
             
             allEvents()
         }else return false
     }
+    
+
+    // TODO: IN FIRESTORE????? maybe i was searching for the wrong thing all this time?
+    // service cloud.firestore {
+    //     match /databases/{database}/documents {
+    //       match /expenses/{expenseId} {
+    //         allow read, write: if request.auth != null && request.auth.uid == resource.data.user;
+    //       }
+    //     }
+    //   }
+    
 
     useEffect(() => {
         const queryEvents = query(
-            expensesCollectionRef,
-            // where("user", "==", user)
+            collection(db, "expenses"),
+            orderBy("date")
+            // where("user", "==", userID)
+
+            // expensesCollectionRef,
+            // where("user", "===", auth.currentUser)
             //orderBy("date") <-- сделать, вроде бы в 11:00 обновиться quota
         )
+        
         // console.log(queryEvents)
     }, [])
     // console.log(user)

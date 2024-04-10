@@ -16,6 +16,9 @@ export const MainContext = ({ children }) => {
     
     // console.log('hello')
     
+    console.log(activity)
+
+
     const [theme, setTheme] = useState(false) // тема для стр
     const [popUpActive, setPopUpActive] = useState(false) //попАп 1ый для инпута
     const [tagActive, setTagActive] = useState(false)//попАп для тагов
@@ -53,30 +56,11 @@ export const MainContext = ({ children }) => {
         console.error(err)
         }
 
-    }
-
-
-    const [testPrice, setTestPrice] = useState([{}])
-    const priceEvents = async() => {
-        try {
-            const priceEvent = await getDocs(expensesCollectionRef)
-            const filteredPriceData = priceEvent.docs.map((doc) => ({
-                ...doc.data().price,
-            }))
-            setTestPrice(filteredPriceData)
-        } catch (err){
-            console.error(err)
-        }
-        
-    }
-    
-
-    
+    }    
 
     //чтоб грузило базу сразу при загрузке стр 
     useEffect(() => {
         allEvents()
-        priceEvents()
     }, [])
 
     // при изменение [sum] призывается setExpenses(sum) 
@@ -93,7 +77,7 @@ export const MainContext = ({ children }) => {
 
             theme, setTheme,
 
-            testPrice, setTestPrice, highestPrice,
+            highestPrice,
 
             deleteItem, allEvents,
 

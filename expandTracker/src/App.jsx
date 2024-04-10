@@ -7,18 +7,40 @@ import { Routes, Route } from 'react-router-dom'
 
 import { AuthContextProvider } from '../context/AuthContextProvider'
 import Protected from './components/Protected'
-import { MainContext } from '../context/MainContext'
-import AllPages from './pages/AllPages'
+import { MainContext, UseMainContext } from '../context/MainContext'
 
 function App() {
   
+  const { theme } = UseMainContext()
 
   return (
-    <AuthContextProvider>
-      <MainContext>
-          <AllPages />
-      </MainContext>
-    </AuthContextProvider>
+    
+    <div className='main_wrapper' style={theme ? { backgroundColor: '#272727' } : { backgroundColor: '#cacaca50'}}>
+      <Routes>
+
+          <Route
+              path='/home' 
+              element={ 
+                  <Protected> 
+                      <Home /> 
+                  </Protected>
+              }>
+          </Route>
+
+          <Route
+              path='/analytics' 
+              element={ 
+                  <Protected> 
+                      <Analytics /> 
+                  </Protected>
+              }>
+          </Route>
+
+          <Route path='/' element={<SignIn />}></Route>
+
+        </Routes> 
+      </div>
+    
   )
 
 }
