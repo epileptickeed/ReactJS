@@ -23,7 +23,9 @@ p{
     color:white;
 }
 
-.expensesHeader{
+.expensesHeader,
+.tag_emojis,
+.tag span{
     mix-blend-mode: normal;
 }
 
@@ -213,7 +215,10 @@ p{
 
         .tag{
             cursor: pointer;
+            span{
+                color:black;
 
+            }
             &:hover{
                 color:#3f3f3f50;
             }
@@ -232,19 +237,26 @@ p{
 
             .tags_arr{
                 margin-top: 2rem;
-                display:flex;
-                justify-content: center;
-                gap:1rem;
+                display:grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: auto;
+                // display:flex;
+                // flex-wrap: wrap;
+                // justify-content: center;
+                // align-items: center;
+                padding:1rem;
+                gap:2rem;
 
                 .tags_arr__item{
                     transition: all .25s ease;
                     cursor: pointer;
                     display:flex;
                     flex-direction: column;
+                    // padding-inline: 2rem;
 
-                    &:hover{
-                        transform: scale(1.1);
-                    }
+                }
+                .tags_arr__item:hover ~ span{
+                    transform: scale(1.1);
                 }
             }
         }

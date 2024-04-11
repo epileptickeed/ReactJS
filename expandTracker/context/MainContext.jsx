@@ -2,9 +2,7 @@ import React from 'react'
 import { useContext, createContext, useState, useMemo, useEffect } from 'react'
 
 import { auth, db } from '../config/firebase'
-import { getDocs, collection, deleteDoc, doc, getDoc } from 'firebase/firestore'
-import { UserAuth } from './AuthContextProvider'
-import { getAuth } from 'firebase/auth'
+import { getDocs, collection, deleteDoc, doc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const Context = createContext()
 
@@ -16,10 +14,7 @@ export const MainContext = ({ children }) => {
   
     const [activity, setActivity] = useState([])
     
-    // console.log('hello')
-    
-    // console.log(activity)
-
+    const [allTags, setAllTags] = useState([])
 
     const [theme, setTheme] = useState(false) // тема для стр
     const [popUpActive, setPopUpActive] = useState(false) //попАп 1ый для инпута
@@ -35,31 +30,99 @@ export const MainContext = ({ children }) => {
     let sum = 0
     let result = activity.map(v => sum += +v.price)
 
-    //в events идёт а в home чтоб вызвать функцию эту в попАпе
-    const expensesCollectionRef = collection(db, "expenses") //база для expenses
 
-    const deleteItem = async(id) => {
-        const delDoc = doc(db, "expenses", id)
-        await deleteDoc(delDoc)
-        allEvents()
-    }
 
-    
-
-    const { user, setUser } = UserAuth()
-    // console.log(user.uid)
-
-   
-    // console.log(auth.currentUser?.uid)
-    
-
-    // КОРОЧЕ ПИПЕЦ РАБОТАЕТ!!!! уРАААААА СКОЛЬКО Я НАД НИМ КОПАЛСЯ
-    const allEvents = async() => {
+    const getAllTags = async() => {
 
         if(!auth.currentUser?.uid){
             setTimeout(() => {
-                allEvents()
+                getAllTags()
             }, 1000)
+            return
+        }
+
+        try {
+            const userDocRef = doc(db, "users", auth.currentUser?.uid)
+            const userTagsCollection = collection(userDocRef, "tags")
+            const tagsSnapshot = await getDocs(userTagsCollection)
+            const filteredData = tagsSnapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id
+            }))
+            // console.log(filteredData)
+            setAllTags(filteredData)
+        } catch (err) {
+            console.error(err)
+        }
+        
+    }
+    
+    // console.log(allTags)
+
+
+    const setTagHandler = (e, item) => {
+        setTagActive(false)
+        const emoji = item.emoji;
+        const title = item.title;
+        setPickedTag(emoji + title)
+    }
+
+
+    const deleteItem = async(id) => {
+        try {
+            const userDocRef = doc(db, "users", auth.currentUser.uid)
+            const delDoc = doc(userDocRef, "expenses", id)
+            await deleteDoc(delDoc)
+            allEvents()
+            console.log(`expense for user ${auth.currentUser.displayName} has been succesfully deleted`)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+
+    const nextHandler = () => {
+        if(pickedTag !== 'select your tag' && priceValue !== 0) {
+            setConfirmActive(true)
+        } else return false
+
+    }    
+
+    const confirmHandler = async() => { // конферм баттон
+        if(priceValue > 0){
+            setConfirmActive(false)
+            setPopUpActive(false)
+
+            if(auth.currentUser) {
+
+                const userDocRef = doc(db, "users", auth.currentUser.uid)
+                const userExpensesCollectionRef = collection(userDocRef, "expenses")
+
+                await addDoc(userExpensesCollectionRef, {
+                    tag: pickedTag,
+                    timeStamp: serverTimestamp(),
+                    price: priceValue,
+                    date: new Date(),
+                    userName: auth.currentUser.displayName,
+                    user: auth.currentUser.uid
+                })
+
+                console.log("Expense added successfully for user:", auth.currentUser.uid);
+                allEvents()
+            } else {
+                console.error("user not auth-ed")
+            } 
+            
+        } else return false
+    }
+    
+
+    // КОРОЧЕ ПИПЕЦ РАБОТАЕТ!!!! уРАААААА СКОЛЬКО Я НАД НИМ КОПАЛСЯ
+    // data created by users can only be seen by themselves - как то так крч
+    const allEvents = async() => {
+
+        if(!auth.currentUser?.uid){
+            
             return
         }
 
@@ -85,6 +148,7 @@ export const MainContext = ({ children }) => {
     //чтоб грузило базу сразу при загрузке стр 
     useEffect(() => {
         allEvents()
+        getAllTags()
     }, [])
     
 
@@ -92,6 +156,9 @@ export const MainContext = ({ children }) => {
     const updateSum = React.useMemo(() => {
         setExpenses(sum)
     }, [sum])
+
+
+
 
 
   return (
@@ -104,9 +171,13 @@ export const MainContext = ({ children }) => {
 
             highestPrice,
 
-            deleteItem, allEvents,
+            deleteItem, allEvents, confirmHandler, nextHandler,
+
+            setTagHandler,
 
             priceValue, setPriceValue,
+
+            allTags, setAllTags,
 
             ConfirmActive, setConfirmActive,
             popUpActive, setPopUpActive,

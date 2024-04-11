@@ -5,13 +5,16 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from '../context/AuthContextProvider.jsx'
 import { MainContext } from '../context/MainContext.jsx'
+import { TimeContextProvider } from '../context/TimeContextProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
         <MainContext>
-          <App />
+          <TimeContextProvider>
+            <App />
+          </TimeContextProvider>
         </MainContext>
       </AuthContextProvider>
     </BrowserRouter>

@@ -3,7 +3,7 @@ import { UseMainContext } from '../../../context/MainContext'
 
 const Events = () => {
 
-  const { activity, deleteItem, theme, user } = UseMainContext()
+  const { activity, deleteItem, theme } = UseMainContext()
   
   // console.log(activity)
 
