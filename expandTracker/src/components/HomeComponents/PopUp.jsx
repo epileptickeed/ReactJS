@@ -73,9 +73,9 @@ const PopUp = () => {
         } else return false
     }
     
-    const showActiv = useMemo(() => {
-        console.log(activity)
-    } , [activity])
+    // const showActiv = useMemo(() => {
+    //     console.log(activity)
+    // } , [activity])
 
 
     // TODO: IN FIRESTORE????? maybe i was searching for the wrong thing all this time?

@@ -10,9 +10,6 @@ const Context = createContext()
 
 export const MainContext = ({ children }) => {
 
-
-    
-
     const [expenses, setExpenses] = useState(0) // все траты
     const [priceValue, setPriceValue] = useState(0) // намбер в инпуте фигово работает :( 
         //мб попробовать в UseMemo PriceValue??? чтоб типо инпут не багался?
@@ -51,30 +48,45 @@ export const MainContext = ({ children }) => {
 
     const { user, setUser } = UserAuth()
     // console.log(user.uid)
-    
-    const allEvents = async(auth, currentUser) => {       
-        
-        const userDocRef = doc(db, "users", currentUser.uid)
-        const userExpensesCollectionRef = collection(userDocRef, "expenses")
-        try{
 
+   
+    // console.log(auth.currentUser?.uid)
+    
+
+    // КОРОЧЕ ПИПЕЦ РАБОТАЕТ!!!! уРАААААА СКОЛЬКО Я НАД НИМ КОПАЛСЯ
+    const allEvents = async() => {
+
+        if(!auth.currentUser?.uid){
+            setTimeout(() => {
+                allEvents()
+            }, 1000)
+            return
+        }
+
+        const userDocRef = doc(db, "users", auth.currentUser.uid)
+        const userExpensesCollectionRef = collection(userDocRef, "expenses")
+        try {
             const eventData = await getDocs(userExpensesCollectionRef)
             const filteredData = eventData.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id
             }))
+
+            // Calculate sum of expenses
+            const sum = filteredData.reduce((total, item) => total + item.amount, 0)
+
             setActivity(filteredData)
             setExpenses(sum)
         } catch (err) {
             console.error(err)
         }
-    }
+    } 
     
-
     //чтоб грузило базу сразу при загрузке стр 
     useEffect(() => {
         allEvents()
     }, [])
+    
 
     // при изменение [sum] призывается setExpenses(sum) 
     const updateSum = React.useMemo(() => {
