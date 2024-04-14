@@ -2,7 +2,7 @@ import React from 'react'
 import { useContext, createContext, useState, useMemo, useEffect } from 'react'
 
 import { auth, db } from '../config/firebase'
-import { getDocs, collection, deleteDoc, doc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore'
+import { getDocs, collection, deleteDoc, doc, getDoc, addDoc, serverTimestamp, query, orderBy } from 'firebase/firestore'
 
 const Context = createContext()
 
@@ -107,6 +107,9 @@ export const MainContext = ({ children }) => {
                     user: auth.currentUser.uid
                 })
 
+                
+
+
                 console.log("Expense added successfully for user:", auth.currentUser.uid);
                 allEvents()
             } else {
@@ -115,25 +118,38 @@ export const MainContext = ({ children }) => {
             
         } else return false
     }
+
     
+    // console.log(activity)
 
     // КОРОЧЕ ПИПЕЦ РАБОТАЕТ!!!! уРАААААА СКОЛЬКО Я НАД НИМ КОПАЛСЯ
     // data created by users can only be seen by themselves - как то так крч
     const allEvents = async() => {
 
         if(!auth.currentUser?.uid){
-            
+            setTimeout(() => {
+                allEvents()
+            }, 1000)
             return
         }
 
         const userDocRef = doc(db, "users", auth.currentUser.uid)
         const userExpensesCollectionRef = collection(userDocRef, "expenses")
         try {
-            const eventData = await getDocs(userExpensesCollectionRef)
+            //                              sort by time 
+            const eventData = await getDocs(query(userExpensesCollectionRef, orderBy('date', 'desc')))
             const filteredData = eventData.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id
             }))
+
+
+            // const q = query(userExpensesCollectionRef, orderBy('timeStamp', 'desc'))
+
+            // const querySnapshot = await getDocs(q)
+            // querySnapshot.forEach((doc) => {
+            //     console.log(doc.id, '=>', doc.data())
+            // })
 
             // Calculate sum of expenses
             const sum = filteredData.reduce((total, item) => total + item.amount, 0)

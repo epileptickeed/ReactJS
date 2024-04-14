@@ -25,7 +25,7 @@ const Footer = () => {
     <div className='footer' style={ theme ? { backgroundColor: '#131313' } : { backgroundColor: 'white' }}>
       <Link to='/analytics'><GrAnalytics color={theme ? 'white' : 'black'} size={30}/></Link>  
       <FaPlus color={theme ? 'white' : 'black'} className='svgplus' size={30} onClick={() => setPopUpActive(true)}/>
-      <FaRobot onClick={() => handleSignOut()} color={theme ? 'white' : 'black'} size={30}/>
+      <FaRobot color={theme ? 'white' : 'black'} size={30}/>
     </div>
   )
 }

@@ -49,8 +49,7 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      
-      setUser(currentUser);
+      setUser(currentUser);  
       if(currentUser){
         const userDocRef = doc(db, "users", auth.currentUser.uid)
         const userDocSnap = await getDoc(userDocRef)

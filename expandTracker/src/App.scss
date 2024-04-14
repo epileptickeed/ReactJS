@@ -17,7 +17,7 @@ body{
 span,
 h2,
 h1,
-h3,
+
 p{
     mix-blend-mode: difference;
     color:white;
@@ -92,9 +92,26 @@ p{
                     align-items: center;
                     border-bottom: 1px solid #cacaca50;
                     padding-block: 1rem;
+
+                    .activ__left{
+                        
+                        span{
+                            color:#acacac90;
+                            font-size: .9rem;
+                        }
+                        
+                        h3{
+                            mix-blend-mode: normal;
+                            // color:black;
+                        }
+
+                        div{
+                            display:flex;
+                            flex-direction: column;
+                        }
+                    }
+
                     .activ__right{
-                        
-                        
 
                         .btnDel{
                             padding-inline: .5rem;
